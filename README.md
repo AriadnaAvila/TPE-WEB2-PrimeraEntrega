@@ -5,7 +5,7 @@
 - *Alumno 2: Juan Marcos, Lorenzo*
 
 ## Descripción del Trabajo
-Este trabajo práctico consiste en el diseño y desarrollo para una web de tienda de ropa, la cual el usuario proda interactuar en este caso con las distintas prensas disponibles, su stock y su talle para poder agregarla a su carrito. La base de datos está diseñada para gestionar los productos y su información asociada, permitiendo a la tienda administrar de manera eficiente su catálogo de productos.
+Este trabajo práctico consiste en el diseño y desarrollo para una web de tienda de ropa, la cual el usuario podrá interactuar en este caso con las distintas prendas disponibles, su stock y su talle para poder agregarla a su carrito. La base de datos está diseñada para gestionar los productos y su información asociada, permitiendo a la tienda administrar de manera eficiente su catálogo de productos.
 
 ## Estructura de la Base de Datos
 
