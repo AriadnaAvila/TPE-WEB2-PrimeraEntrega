@@ -36,8 +36,5 @@ La base de datos está compuesta por dos tablas principales:
 ## Objetivo
 El objetivo de este trabajo es demostrar el uso de bases de datos relacionales para gestionar información de productos en un contexto de tienda de ropa, asegurando que la estructura esté normalizada y facilite consultas eficientes.
 
-<<<<<<< HEAD
 ![Texto alternativo](images/DER.png)
-=======
 ![Texto alternativo](DER.png)
->>>>>>> b9873b52343d84873d63097e5994f85de880ca34
