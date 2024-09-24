@@ -5,7 +5,7 @@
 - *Alumno 2: Juan Marcos, Lorenzo*
 
 ## Descripción del Trabajo
-Este trabajo práctico consiste en el diseño y desarrollo para una web de tienda de ropa, la cual el usuario proda interactuar en este caso con las distintas prensas disponibles, su stock y su talle para poder agregarla a su carrito. La base de datos está diseñada para gestionar los productos y su información asociada, permitiendo a la tienda administrar de manera eficiente su catálogo de productos.
+Este trabajo práctico consiste en el diseño y desarrollo para una web de tienda de ropa, la cual el usuario podrá interactuar en este caso con las distintas prendas disponibles, su stock y su talle para poder agregarla a su carrito. La base de datos está diseñada para gestionar los productos y su información asociada, permitiendo a la tienda administrar de manera eficiente su catálogo de productos.
 
 ## Estructura de la Base de Datos
 
@@ -36,4 +36,8 @@ La base de datos está compuesta por dos tablas principales:
 ## Objetivo
 El objetivo de este trabajo es demostrar el uso de bases de datos relacionales para gestionar información de productos en un contexto de tienda de ropa, asegurando que la estructura esté normalizada y facilite consultas eficientes.
 
+<<<<<<< HEAD
 ![Texto alternativo](images/DER.png)
+=======
+![Texto alternativo](DER.png)
+>>>>>>> b9873b52343d84873d63097e5994f85de880ca34
