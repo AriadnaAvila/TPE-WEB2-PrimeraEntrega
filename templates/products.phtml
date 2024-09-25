@@ -1,0 +1,16 @@
+<h2>Productos</h2>
+<ul>
+    <?php foreach($products as $product): ?>
+        <li>
+            <strong>Tipo</strong>
+            <?=$product->tipo?>
+    
+            <strong>Categoria</strong>
+            <?=$product->categoria?>
+    
+            <strong>Precio</strong>
+            <?=$product->precio?>
+        </li>
+    
+    <?php endforeach?>
+</ul>
