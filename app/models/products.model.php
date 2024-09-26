@@ -16,6 +16,15 @@ class productsModel{
         return $products;
 
     }
+
+    function getProductById($id_producto){
+        $query = $this->db->prepare('SELECT * FROM productos WHERE id_producto=?');
+        $query->execute([$id_producto]);
+
+        $productById = $query->fetch(PDO::FETCH_OBJ);
+        return $productById;
+
+    }
     
 
 }

@@ -6,4 +6,8 @@ class productsView{
         require './templates/products.phtml';
     }
 
+    function showProductById($productById){
+        require './templates/productbyid.phtml';
+    }
+
 }

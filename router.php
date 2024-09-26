@@ -23,6 +23,11 @@ switch ($params[0]) {
         $categoriesController = new categoriesController();
         $categoriesController->showCategories();
         break;
+    case 'details':
+        $productsController = new productsController();
+        $id_producto = $params[1];
+        $productsController->showProductById($id_producto);
+        break;
     default:
         echo '404 page not found';
         break;
