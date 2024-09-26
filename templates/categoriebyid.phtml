@@ -1,0 +1,7 @@
+<h2>Detalles de la categoría</h2>
+
+<?php if ($categorieById): ?>
+    <strong>Nombre: </strong> <?= $categorieById->nombre_categoria ?>
+<?php else: ?>
+    <strong>No se encontró la categoría.</strong>
+<?php endif; ?>

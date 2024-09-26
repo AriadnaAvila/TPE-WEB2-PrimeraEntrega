@@ -13,6 +13,22 @@ class categoriesModel{
 
         $categories = $query->fetchAll(PDO::FETCH_OBJ);
         return $categories;
-
     }
+
+    function getCategorieById($id_categoria){
+        $query = $this->db->prepare('SELECT * FROM categorias WHERE id_categoria=?');
+        $query->execute([$id_categoria]);
+    
+        $categorieById = $query->fetch(PDO::FETCH_OBJ); // Devuelve un solo objeto
+    
+        // Si no se encuentra la categoría, devuelve null o maneja el error
+        if (!$categorieById) {
+            return null; // o lanzar una excepción
+        }
+    
+        return $categorieById;
+    }
+    
+
+    
 }

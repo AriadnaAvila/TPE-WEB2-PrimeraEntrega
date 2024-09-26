@@ -15,4 +15,9 @@ class categoriesController {
         $categories=$this->model->getCategories();
         $this->view->showCategories($categories);
     }
+
+    public function showCategorieById($id_categoria){
+        $categorieById=$this->model->getCategorieById($id_categoria);
+        $this->view->showCategorieById($categorieById);
+    }
 }

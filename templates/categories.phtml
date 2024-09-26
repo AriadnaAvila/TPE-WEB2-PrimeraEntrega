@@ -3,7 +3,7 @@
     <?php foreach($categories as $categorie): ?>
         <li>
             <?=$categorie->nombre_categoria?>
+            <span><a href='categorieById/<?=$categorie->id_categoria?>' type='button'>Detalle</a></span>
         </li>
-    
     <?php endforeach?>
 </ul>
