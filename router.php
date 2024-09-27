@@ -37,6 +37,11 @@ switch ($params[0]) {
         $categoriesController = new categoriesController();
         $categoriesController->addCategorie();
         break;
+    case 'deleteCategory':
+        $categoriesController = new categoriesController();
+        $id_categoria = $params[1];
+        $categoriesController->deleteCategory($id_categoria);
+        break;
     default:
         echo '404 page not found';
         break;

@@ -40,4 +40,12 @@ class categoriesController {
         header("Location: " . BASE_URL. "categories"); 
     }
 
+    // Función para eliminar una categoría
+    public function deleteCategory($id_categoria) {
+        // Llama al modelo para eliminar la categoría
+        $this->categoriesModel->deleteCategoryById($id_categoria);
+        // Redirige a la lista de categorías
+        header("Location: " . BASE_URL . "categories");
+    }
+
 }

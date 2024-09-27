@@ -35,7 +35,11 @@ class categoriesModel{
 
         return $this->db->lastInsertId();
     }
-    
 
+    // Función para eliminar una categoría
+    public function deleteCategoryById($id_categoria) {
+        $query = $this->db->prepare('DELETE FROM categorias WHERE id_categoria = ?');
+        $query->execute([$id_categoria]);
+    }
     
 }
