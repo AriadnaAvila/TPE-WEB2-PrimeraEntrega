@@ -6,7 +6,8 @@ class categoriesView{
         require './templates/categories.phtml';  // Muestra lista de categorías
     }
 
-    function showCategorieById($categorieById){
-        require './templates/categoriebyid.phtml';  // Muestra detalles de una categoría
+    public function showCategorieById($categorieById, $productsbycategorie) {
+        require './templates/categoriebyid.phtml';  // Muestra detalles de la categoría y los productos
     }
+
 }

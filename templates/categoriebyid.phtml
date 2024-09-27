@@ -5,3 +5,18 @@
 <?php else: ?>
     <strong>No se encontró la categoría.</strong>
 <?php endif; ?>
+
+<!-- Lista de productos que pertenecen a la categoría seleccionada -->
+<?php if (isset($productsbycategorie) && !empty($productsbycategorie)): ?>
+    <h2>Productos de la categoría seleccionada</h2>
+    <ul>
+        <?php foreach($productsbycategorie as $product): ?>
+            <li>
+                Nombre: <?= $product->tipo ?> <br>
+                Precio: <?= $product->precio ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No hay productos en esta categoría.</p>
+<?php endif; ?>

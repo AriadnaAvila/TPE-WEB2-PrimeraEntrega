@@ -1,10 +1,22 @@
-<h2>Detalles del producto</h2>
+<h2>Detalles de la categoría</h2>
 
-<?php foreach($productById as $product): ?>
-    <strong>Tipo</strong>
-    <?=$productById->tipo?>
-    
-    <strong>Precio</strong>
-    <?=$productById->precio?>
+<?php if ($categorieById): ?>
+    <strong>Nombre: </strong> <?= $categorieById->nombre_categoria ?>
+<?php else: ?>
+    <strong>No se encontró la categoría.</strong>
+<?php endif; ?>
 
-<?php endforeach?>
+<!-- Lista de productos que pertenecen a la categoría seleccionada -->
+<?php if (isset($products) && !empty($products)): ?>
+    <h2>Productos de la categoría seleccionada</h2>
+    <ul>
+        <?php foreach($products as $product): ?>
+            <li>
+                Nombre: <?= $product->nombre_producto ?> <br>
+                Precio: <?= $product->precio ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No hay productos en esta categoría.</p>
+<?php endif; ?>
