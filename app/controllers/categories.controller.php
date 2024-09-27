@@ -20,4 +20,13 @@ class categoriesController {
         $categorieById=$this->model->getCategorieById($id_categoria);
         $this->view->showCategorieById($categorieById);
     }
+
+    function addCategorie() {
+        // validar entrada de datos
+        // authHelper::verify();
+        $nombre_categoria = $_POST['nombre_categoria'];
+
+        $this->model->insertCategorie($nombre_categoria);
+        header("Location: " . BASE_URL. "categories"); 
+    }
 }

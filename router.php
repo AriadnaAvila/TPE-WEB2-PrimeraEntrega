@@ -33,6 +33,10 @@ switch ($params[0]) {
         $id_categoria = $params[1];
         $categoriesController->showCategorieById($id_categoria);
         break;
+    case 'addCategorie':
+        $categoriesController = new categoriesController();
+        $categoriesController->addCategorie();
+        break;
     default:
         echo '404 page not found';
         break;
