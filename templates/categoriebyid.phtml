@@ -1,22 +1,30 @@
-<h2>Detalles de la categoría</h2>
+<?php require './templates/header.phtml'; ?>
+
+<h2 class="text-2xl font-bold mb-4">Detalles de la categoría</h2>
 
 <?php if ($categorieById): ?>
-    <strong>Nombre: </strong> <?= $categorieById->nombre_categoria ?>
+    <strong class="block">Nombre:</strong>
+    <span class="text-lg font-semibold"><?= htmlspecialchars($categorieById->nombre_categoria) ?></span>
 <?php else: ?>
-    <strong>No se encontró la categoría.</strong>
+    <strong class="text-red-500">No se encontró la categoría.</strong>
 <?php endif; ?>
 
 <!-- Lista de productos que pertenecen a la categoría seleccionada -->
 <?php if (isset($productsbycategorie) && !empty($productsbycategorie)): ?>
-    <h2>Productos de la categoría seleccionada</h2>
-    <ul>
+    <h2 class="text-2xl font-bold mt-6">Productos de la categoría seleccionada</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         <?php foreach($productsbycategorie as $product): ?>
-            <li>
-                Nombre: <?= $product->tipo ?> <br>
-                Precio: <?= $product->precio ?>
-            </li>
+            <div class="bg-white border rounded-lg shadow-md overflow-hidden transition transform hover:scale-105">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
+                    <p class="text-gray-700">Precio: <span class="text-green-500"><?= htmlspecialchars($product->precio) ?> ARS</span></p>
+                </div>
+                <div class="p-4 border-t">
+                    <a href='details/<?=$product->id_producto?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Ver Detalles</a>
+                </div>
+            </div>
         <?php endforeach; ?>
-    </ul>
+    </div>
 <?php else: ?>
-    <p>No hay productos en esta categoría.</p>
+    <p class="mt-4 text-gray-600">No hay productos en esta categoría.</p>
 <?php endif; ?>

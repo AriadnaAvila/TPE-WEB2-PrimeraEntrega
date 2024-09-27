@@ -1,19 +1,25 @@
-<h2>Categorias</h2>
-<ul>
+<?php require './templates/header.phtml'; ?>
+
+<h2 class="text-2xl font-bold mb-4">Categorías</h2>
+<ul class="space-y-2">
     <?php foreach($categories as $categorie): ?>
-        <li>
-            <?=$categorie->nombre_categoria?>
-            <span><a href='categorieById/<?=$categorie->id_categoria?>' type='button'>Detalle</a></span>
-            <span><a href='deleteCategory/<?= $categorie->id_categoria ?>' type='button' onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">Eliminar</a></span>
-            <span><a href='editCategory/<?= $categorie->id_categoria ?>' type='button'>Editar</a></span>
+        <li class="flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow hover:bg-gray-200 transition">
+            <span class="text-lg"><?= htmlspecialchars($categorie->nombre_categoria) ?></span>
+            <span class="space-x-2">
+                <a href='categorieById/<?=$categorie->id_categoria?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Detalle</a>
+                <a href='editCategory/<?=$categorie->id_categoria?>' class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Editar</a>
+                <form action="deleteCategorie/<?=$categorie->id_categoria?>" method="POST" class="inline-block">
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</button>
+                </form>
+            </span>
         </li>
-    <?php endforeach?>
+    <?php endforeach; ?>
 </ul>
 
-<form action="addCategorie" method="POST">
+<form action="addCategorie" method="POST" class="mt-6 bg-white p-4 rounded-lg shadow">
     <div>
-        <label>TIPO DE PRENDA</label>
-        <input type="text" name="nombre_categoria" placeholder="Ingrese la categoria" required>
+        <label class="block text-sm font-medium">TIPO DE PRENDA</label>
+        <input type="text" name="nombre_categoria" placeholder="Ingrese la categoría" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
     </div>
-    <button type="submit">Agregar Categoria</button>
+    <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Agregar Categoría</button>
 </form>
