@@ -48,4 +48,28 @@ class categoriesController {
         header("Location: " . BASE_URL . "categories");
     }
 
+    // Función para mostrar el formulario de edición
+    public function editCategory($id_categoria) {
+        // Asegúrate de que estás recuperando la categoría correctamente
+        $categorie = $this->categoriesModel->getCategorieById($id_categoria);
+        
+        // Verifica que la categoría exista
+        if (!$categorie) {
+            // Si no existe, puedes redirigir o mostrar un mensaje
+            header("Location: " . BASE_URL . "categories");
+            exit();
+        }
+    
+        // Pasa el objeto a la vista
+        $this->view->showEditCategoryForm($categorie);
+    }
+
+    // Función para procesar la actualización de la categoría
+    public function updateCategory() {
+        $id_categoria = $_POST['id_categoria'];
+        $nombre_categoria = $_POST['nombre_categoria'];
+        $this->categoriesModel->updateCategory($id_categoria, $nombre_categoria);
+        header("Location: " . BASE_URL . "categories");
+    }
+
 }

@@ -1,0 +1,9 @@
+<h2>Editar Categoría</h2>
+<form action="updateCategory" method="POST">
+    <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($categorie->id_categoria) ?>">
+    <div>
+        <label>Nombre de la Categoría</label>
+        <input type="text" name="nombre_categoria" value="<?= htmlspecialchars($categorie->nombre_categoria) ?>" required>
+    </div>
+    <button type="submit">Actualizar Categoría</button>
+</form>

@@ -5,6 +5,7 @@
             <?=$categorie->nombre_categoria?>
             <span><a href='categorieById/<?=$categorie->id_categoria?>' type='button'>Detalle</a></span>
             <span><a href='deleteCategory/<?= $categorie->id_categoria ?>' type='button' onclick="return confirm('¿Estás seguro de que quieres eliminar esta categoría?')">Eliminar</a></span>
+            <span><a href='editCategory/<?= $categorie->id_categoria ?>' type='button'>Editar</a></span>
         </li>
     <?php endforeach?>
 </ul>

@@ -10,4 +10,9 @@ class categoriesView{
         require './templates/categoriebyid.phtml';  // Muestra detalles de la categoría y los productos
     }
 
+    // Nueva función para mostrar el formulario de edición de una categoría
+    public function showEditCategoryForm($categorie) {
+        require './templates/editCategory.phtml';  // Muestra el formulario de edición
+    }
+
 }
