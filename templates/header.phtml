@@ -8,24 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-    <header class="bg-gray-800 text-white p-4">
-        <nav class="container mx-auto flex justify-between items-center">
-            <div>
-                <a href="home" class="text-xl font-semibold">Mi Tienda</a>
-            </div>
-            <div class="flex space-x-4">
-                <a href="categories" class="text-white">Categorías</a>
-                <a href="products" class="text-white">Productos</a>
-            </div>
-            <div class="flex space-x-4">
-                <?php if (isset($_SESSION['user'])): ?>
-                    <span class="text-sm">Bienvenido, <?= htmlspecialchars($_SESSION['user']) ?></span>
-                    <a href="logout" class="text-red-500">Cerrar Sesión</a>
-                <?php else: ?>
-                    <a href="home" class="text-white">Iniciar Sesión</a>
-                <?php endif; ?>
-            </div>
-        </nav>
-    </header>
+<header class="bg-gray-800 text-white p-4 fixed top-0 left-0 right-0 z-50">
+    <nav class="container mx-auto flex justify-between items-center">
+        <div>
+            <a href="home" class="text-xl font-semibold">Mi Tienda</a>
+        </div>
+        <div class="flex space-x-4">
+            <a href="categories" class="text-white">Categorías</a>
+            <a href="products" class="text-white">Productos</a>
+        </div>
+        <div class="flex space-x-4">
+            <?php if (isset($_SESSION['user'])): ?>
+                <span class="text-sm">Bienvenido, <?= htmlspecialchars($_SESSION['user']) ?></span>
+                <a href="logout" class="text-red-500">Cerrar Sesión</a>
+            <?php else: ?>
+                <a href="home" class="text-white">Iniciar Sesión</a>
+            <?php endif; ?>
+        </div>
+    </nav>
+</header>
+
 
     <!-- El contenido principal de la página irá aquí -->
