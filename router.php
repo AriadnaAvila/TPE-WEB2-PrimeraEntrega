@@ -82,12 +82,13 @@ switch ($params[0]) {
         break;
     case 'editCategory':
         $categoriesController = new categoriesController();
-        $id_categoria = $params[0]; // Suponiendo que el ID se pasa como parámetro
+        $id_categoria = $params[1]; // Suponiendo que el ID se pasa como parámetro
         $categoriesController->editCategory($id_categoria);
         break;
     case 'updateCategory':
         $categoriesController = new categoriesController();
-        $categoriesController->updateCategory();
+        $id_categoria = $params[1];
+        $categoriesController->updateCategory($id_categoria);
         break;
     default:
         echo '404 page not found';

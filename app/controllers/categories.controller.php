@@ -33,7 +33,7 @@ class categoriesController {
 
     function addCategorie() {
         $nombre_categoria = $_POST['nombre_categoria'];
-        
+
         $this->categoriesModel->insertCategorie($nombre_categoria);
         header("Location: " . BASE_URL. "categories");
         exit();
@@ -63,7 +63,7 @@ class categoriesController {
         $this->view->showEditCategoryForm($categorie);
     }
 
-    public function updateCategory() {
+    public function updateCategory($id_categoria) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_categoria = filter_var($_POST['id_categoria'], FILTER_SANITIZE_NUMBER_INT);
             $nombre_categoria = filter_var($_POST['nombre_categoria'], FILTER_SANITIZE_STRING);
