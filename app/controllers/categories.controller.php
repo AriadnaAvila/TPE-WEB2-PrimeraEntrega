@@ -63,9 +63,17 @@ class categoriesController {
     }
 
     public function updateCategory() {
-        $id_categoria = $_POST['id_categoria'];
-        $nombre_categoria = $_POST['nombre_categoria'];
-        $this->categoriesModel->updateCategory($id_categoria, $nombre_categoria);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_categoria = filter_var($_POST['id_categoria'], FILTER_SANITIZE_NUMBER_INT);
+            $nombre_categoria = filter_var($_POST['nombre_categoria'], FILTER_SANITIZE_STRING);
+            
+            if ($id_categoria && $nombre_categoria) {
+                $this->categoriesModel->updateCategory($id_categoria, $nombre_categoria);
+                header("Location: " . BASE_URL . "categories");
+                exit();
+            }
+        }
+        // Opcional: redirigir si no es POST
         header("Location: " . BASE_URL . "categories");
         exit();
     }

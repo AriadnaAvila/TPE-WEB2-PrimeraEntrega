@@ -42,7 +42,6 @@ class categoriesModel{
         $query->execute([$id_categoria]);
     }
 
-    // Función para modificar una categoría
     public function updateCategory($id_categoria, $nombre_categoria) {
         $query = $this->db->prepare('UPDATE categorias SET nombre_categoria = ? WHERE id_categoria = ?');
         $query->execute([$nombre_categoria, $id_categoria]);
