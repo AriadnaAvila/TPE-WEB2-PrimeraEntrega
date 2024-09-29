@@ -1,15 +1,28 @@
 <?php require './templates/header.phtml'; ?>
 
-<h2 class="text-3xl font-bold text-center mb-6">Productos</h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <?php foreach($products as $product): ?>
-        <div class="bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 m-4">
-            <img src="path_to_image" alt="Imagen del producto" class="w-full h-48 object-cover rounded-t-lg">
-            <div class="p-4">
-                <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
-                <p class="text-gray-600">Precio: <span class="text-green-500"><?= htmlspecialchars($product->precio) ?> ARS</span></p>
-                <a href='product/<?=$product->id_producto?>' class="mt-2 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">Detalles</a>
+<section class="relative bg-cover bg-center h-screen" style="background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210903/pngtree-mens-clothing-store-sportswear-shopping-photography-map-with-pictures-image_796890.jpg');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="container mx-auto flex items-center justify-center h-full relative z-10">
+        <h1 class="text-white text-5xl md:text-6xl font-bold text-center">
+            Productos
+        </h1>
+    </div>
+</section>
+
+<div class="container mx-auto p-6">
+    <h2 class="text-3xl font-bold text-center mb-6">Todos los Productos</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <?php foreach($products as $product): ?>
+            <div class="bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 m-4">
+                <img src="path_to_image" alt="Imagen del producto" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
+                    <p class="text-gray-600">Precio: <span class="text-green-500">$<?= htmlspecialchars($product->precio) ?> ARS</span></p>
+                    <a href='product/<?=$product->id_producto?>' class="mt-2 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">Detalles</a>
+                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
 </div>
+
+<?php require './templates/footer.phtml'; ?>
