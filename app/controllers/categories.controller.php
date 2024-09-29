@@ -19,33 +19,31 @@ class categoriesController {
         $this->view->showCategories($categories);
     }
 
-    public function showCategorieById($id_categoria){
-        // Obtiene los detalles de la categoría
+    public function showCategorieById($id_categoria) {
         $categorieById = $this->categoriesModel->getCategorieById($id_categoria);
+        if (!$categorieById) {
+            header('Location: ' . BASE_URL . 'categories');
+            exit();
+        }
     
-        // Obtiene los productos de la categoría seleccionada
         $productsbycategorie = $this->productsModel->getProductsByCategory($id_categoria);
-    
-        // Pasa tanto la categoría como los productos a la vista
         $this->view->showCategorieById($categorieById, $productsbycategorie);
     }
     
 
     function addCategorie() {
-        // validar entrada de datos
-        // authHelper::verify();
-        $nombre_categoria = $_POST['nombre_categoria'];
-
+        $nombre_categoria = filter_var($_POST['nombre_categoria'], FILTER_SANITIZE_STRING);
         $this->categoriesModel->insertCategorie($nombre_categoria);
-        header("Location: " . BASE_URL. "categories"); 
+        header("Location: " . BASE_URL. "categories");
+        exit();
     }
 
-    // Función para eliminar una categoría
     public function deleteCategory($id_categoria) {
-        // Llama al modelo para eliminar la categoría
-        $this->categoriesModel->deleteCategoryById($id_categoria);
-        // Redirige a la lista de categorías
-        header("Location: " . BASE_URL . "categories");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->categoriesModel->deleteCategoryById($id_categoria);
+            header("Location: " . BASE_URL . "categories");
+            exit();
+        }
     }
 
     // Función para mostrar el formulario de edición
@@ -64,12 +62,12 @@ class categoriesController {
         $this->view->showEditCategoryForm($categorie);
     }
 
-    // Función para procesar la actualización de la categoría
     public function updateCategory() {
         $id_categoria = $_POST['id_categoria'];
         $nombre_categoria = $_POST['nombre_categoria'];
         $this->categoriesModel->updateCategory($id_categoria, $nombre_categoria);
         header("Location: " . BASE_URL . "categories");
+        exit();
     }
 
 }

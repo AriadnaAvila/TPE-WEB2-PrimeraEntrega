@@ -49,9 +49,27 @@ switch ($params[0]) {
         $productsController = new productsController();
         $productsController->showProducts();
         break;
+    case 'product':  // Cambio aquí
+        if (isset($params[1])) {
+            $productsController = new productsController();
+            $productsController->showProductByID($params[1]); 
+        } else {
+            // Manejo de error si no hay ID
+            echo '404 Product Not Found';
+        }
+        break;
     case 'categories':
         $categoriesController = new categoriesController();
         $categoriesController->showCategories();
+        break;
+    case 'categorie':  // Cambio aquí
+        if (isset($params[1])) {
+            $categoriesController = new categoriesController();
+            $categoriesController->showCategorieById($params[1]);
+        } else {
+            // Manejo de error si no hay ID
+            echo '404 Category Not Found';
+        }
         break;
     default:
         echo '404 page not found';

@@ -7,7 +7,7 @@
             <div class="p-4">
                 <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
                 <p class="text-gray-700">Precio: <span class="text-green-500">$<?= htmlspecialchars($product->precio) ?></span> ARS</p>
-                <span class="mt-4 block"><a href='details/<?=$product->id_producto?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Detalles</a></span>
+                <span class="mt-4 block"><a href='product/<?=$product->id_producto?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Detalles</a></span>
             </div>
         </div>
     <?php endforeach; ?>
