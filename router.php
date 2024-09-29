@@ -1,11 +1,15 @@
 <?php
+session_start();  // Iniciar la sesión
+
 require_once 'app/controllers/products.controller.php';
 require_once 'app/controllers/categories.controller.php';
+require_once 'app/controllers/auth.controller.php';  // Añadimos el AuthController
 
+// Definimos la URL base
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
-// Leemos la acción que viene por parámetro
-$action = 'home'; // Acción por defecto
+// Acción por defecto es 'home'
+$action = 'home';
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -13,8 +17,34 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-// Determina qué camino seguir según la acción
+// Proteger rutas que requieren autenticación
+$publicRoutes = ['home', 'login', 'logout'];  // Rutas públicas
+
+// Si el usuario intenta acceder a login y ya está logueado, redirigir al home
+if ($params[0] === 'login' && isset($_SESSION['user'])) {
+    header('Location: ' . BASE_URL . 'home');
+    exit();
+}
+
+if (!in_array($params[0], $publicRoutes) && !isset($_SESSION['user'])) {
+    header('Location: ' . BASE_URL . 'home');  // Redirigir al login si no está autenticado
+    exit();
+}
+
+
+// Rutas
 switch ($params[0]) {
+    case 'home':  
+        require 'templates/home.phtml';  // Cargar el template home.phtml
+        break;
+    case 'login':  
+        $authController = new AuthController();
+        $authController->login();
+        break;
+    case 'logout':  // Ruta para cerrar sesión
+        $authController = new AuthController();
+        $authController->logout();
+        break;
     case 'products':
         $productsController = new productsController();
         $productsController->showProducts();
@@ -22,34 +52,6 @@ switch ($params[0]) {
     case 'categories':
         $categoriesController = new categoriesController();
         $categoriesController->showCategories();
-        break;
-    case 'details':
-        $productsController = new productsController();
-        $id_producto = $params[1];
-        $productsController->showProductById($id_producto);
-        break;
-    case 'categorieById': 
-        $categoriesController = new categoriesController();
-        $id_categoria = $params[1];
-        $categoriesController->showCategorieById($id_categoria);
-        break;
-    case 'addCategorie':
-        $categoriesController = new categoriesController();
-        $categoriesController->addCategorie();
-        break;
-    case 'deleteCategory':
-        $categoriesController = new categoriesController();
-        $id_categoria = $params[1];
-        $categoriesController->deleteCategory($id_categoria);
-        break;
-    case 'editCategory':
-        $categoriesController = new categoriesController();
-        $id_categoria = $params[1];
-        $categoriesController->editCategory($id_categoria);
-        break;        
-    case 'updateCategory':
-        $categoriesController = new categoriesController();
-        $categoriesController->updateCategory();
         break;
     default:
         echo '404 page not found';

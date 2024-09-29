@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda</title>
+    <!-- Incluye Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Tienda de Ropa</title>
 </head>
-<body class="bg-gray-50">
-
-<header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div>
-            <a href="/" class="text-2xl font-bold text-blue-500">Tienda de Ropa</a>
-        </div>
-        <nav class="space-x-4">
-            <a href="categories" class="text-gray-700 hover:text-blue-500">Categorías</a>
-            <a href="products" class="text-gray-700 hover:text-blue-500">Productos</a>
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div>
+                <a href="home" class="text-xl font-semibold">Mi Tienda</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="categories" class="text-white">Categorías</a>
+                <a href="products" class="text-white">Productos</a>
+            </div>
+            <div class="flex space-x-4">
+                <?php if (isset($_SESSION['user'])): ?>
+                    <span class="text-sm">Bienvenido, <?= htmlspecialchars($_SESSION['user']) ?></span>
+                    <a href="logout" class="text-red-500">Cerrar Sesión</a>
+                <?php else: ?>
+                    <a href="home" class="text-white">Iniciar Sesión</a>
+                <?php endif; ?>
+            </div>
         </nav>
-    </div>
-</header>
+    </header>
 
-<main class="py-6">
+    <!-- El contenido principal de la página irá aquí -->
