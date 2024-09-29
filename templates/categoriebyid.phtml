@@ -1,33 +1,46 @@
 <?php require './templates/header.phtml'; ?>
 
-<h2 class="text-3xl font-bold text-center mb-6">Detalles de la categoría</h2>
-
-<?php if ($categorieById): ?>
-    <strong class="block">Nombre:</strong>
-    <span class="text-lg font-semibold"><?= htmlspecialchars($categorieById->nombre_categoria) ?></span>
-<?php else: ?>
-    <strong class="text-red-500">No se encontró la categoría.</strong>
-<?php endif; ?>
-
-<!-- Lista de productos que pertenecen a la categoría seleccionada -->
-<?php if (isset($productsbycategorie) && !empty($productsbycategorie)): ?>
-    <h2 class="text-2xl font-bold mt-6">Productos de la categoría seleccionada</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-        <?php foreach($productsbycategorie as $product): ?>
-            <div class="bg-white border rounded-lg shadow-md overflow-hidden transition transform hover:scale-105">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
-                    <p class="text-gray-700">Precio: <span class="text-green-500"><?= htmlspecialchars($product->precio) ?> ARS</span></p>
-                </div>
-                <div class="p-4 border-t">
-                    <a href='details/<?=$product->id_producto?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Ver Detalles</a>
-                </div>
-            </div>
-        <?php endforeach; ?>
+<!-- Hero Section para mostrar el título de la categoría -->
+<section class="relative bg-cover bg-center h-80" style="background-image: url('https://wallpapers.com/images/featured/tienda-i5s6es944n29q9sp.jpg');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="container mx-auto flex items-center justify-center h-full relative z-10">
+        <h1 class="text-white text-5xl md:text-6xl font-bold text-center">
+            Detalles de la Categoría
+        </h1>
     </div>
-<?php else: ?>
-    <p class="mt-4 text-gray-600">No hay productos en esta categoría.</p>
-<?php endif; ?>
+</section>
 
+<div class="container mx-auto p-6">
+    <!-- Mostrar detalles de la categoría -->
+    <?php if ($categorieById): ?>
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-center">
+            <span class="text-lg font-semibold"><?= htmlspecialchars($categorieById->nombre_categoria) ?></span>
+        </div>
+    <?php else: ?>
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <strong class="text-red-500">No se encontró la categoría.</strong>
+        </div>
+    <?php endif; ?>
+
+    <!-- Lista de productos en la categoría -->
+    <?php if (isset($productsbycategorie) && !empty($productsbycategorie)): ?>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+            <?php foreach($productsbycategorie as $product): ?>
+                <div class="bg-white border rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 m-4">
+                    <img src="https://via.placeholder.com/300x200" alt="Imagen del producto" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
+                        <p class="text-gray-700">Precio: <span class="text-green-500">$<?= htmlspecialchars($product->precio) ?> ARS</span></p>
+                    </div>
+                    <div class="p-4 border-t">
+                        <a href='details/<?=$product->id_producto?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Ver Detalles</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p class="mt-4 text-center text-gray-600">No hay productos en esta categoría.</p>
+    <?php endif; ?>
+</div>
 
 <?php require './templates/footer.phtml'; ?>

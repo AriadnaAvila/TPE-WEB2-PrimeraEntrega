@@ -32,7 +32,8 @@ class categoriesController {
     
 
     function addCategorie() {
-        $nombre_categoria = filter_var($_POST['nombre_categoria'], FILTER_SANITIZE_STRING);
+        $nombre_categoria = $_POST['nombre_categoria'];
+        
         $this->categoriesModel->insertCategorie($nombre_categoria);
         header("Location: " . BASE_URL. "categories");
         exit();

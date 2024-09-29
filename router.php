@@ -71,6 +71,15 @@ switch ($params[0]) {
             echo '404 Category Not Found';
         }
         break;
+    case 'addCategorie':
+        $categoriesController = new categoriesController();
+        $categoriesController->addCategorie();
+        break;
+    case 'deleteCategorie':
+        $categoriesController = new categoriesController();
+        $id_categoria = $params[1];
+        $categoriesController->deleteCategory($id_categoria);
+        break;
     case 'editCategory':
         $categoriesController = new categoriesController();
         $id_categoria = $params[0]; // Suponiendo que el ID se pasa como parámetro

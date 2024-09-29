@@ -16,7 +16,7 @@
             <li class="flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow hover:bg-gray-200 transition">
                 <span class="text-lg"><?= htmlspecialchars($categorie->nombre_categoria) ?></span>
                 <span class="space-x-2">
-                    <a href='categorie/<?=$categorie->id_categoria?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Detalle</a>
+                    <a href='categorie/<?=$categorie->id_categoria?>' class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Ver productos</a>
                     <a href='editCategory/<?=$categorie->id_categoria?>' class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Editar</a>
                     <form action="deleteCategorie/<?=$categorie->id_categoria?>" method="POST" class="inline-block">
                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</button>
