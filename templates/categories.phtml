@@ -1,6 +1,7 @@
 <?php require './templates/header.phtml'; ?>
 
-<h2 class="text-2xl font-bold mb-4">Categorías</h2>
+<h2 class="text-3xl font-bold text-center mb-6">Categorías</h2>
+
 <ul class="space-y-2">
     <?php foreach($categories as $categorie): ?>
         <li class="flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow hover:bg-gray-200 transition">
@@ -21,5 +22,5 @@
         <label class="block text-sm font-medium">TIPO DE PRENDA</label>
         <input type="text" name="nombre_categoria" placeholder="Ingrese la categoría" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
     </div>
-    <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Agregar Categoría</button>
+    <button class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-all">Agregar Categoría</button>
 </form>
