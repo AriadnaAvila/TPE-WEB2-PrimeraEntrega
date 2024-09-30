@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 require_once 'app/views/categories.view.php';
 require_once 'app/models/categories.model.php';
 require_once 'app/models/products.model.php';
@@ -47,26 +48,20 @@ class categoriesController {
         }
     }
 
-    // Función para mostrar el formulario de edición
     public function editCategory($id_categoria) {
-        // Asegúrate de que estás recuperando la categoría correctamente
         $categorie = $this->categoriesModel->getCategorieById($id_categoria);
         
-        // Verifica que la categoría exista
         if (!$categorie) {
-            // Si no existe, puedes redirigir o mostrar un mensaje
             header("Location: " . BASE_URL . "categories");
             exit();
         }
-    
-        // Pasa el objeto a la vista
         $this->view->showEditCategoryForm($categorie);
     }
 
-    public function updateCategory($id_categoria) {
+    public function updateCategory() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id_categoria = filter_var($_POST['id_categoria'], FILTER_SANITIZE_NUMBER_INT);
-            $nombre_categoria = filter_var($_POST['nombre_categoria'], FILTER_SANITIZE_STRING);
+            $id_categoria = $_POST['id_categoria'];
+            $nombre_categoria = $_POST['nombre_categoria'];
             
             if ($id_categoria && $nombre_categoria) {
                 $this->categoriesModel->updateCategory($id_categoria, $nombre_categoria);
@@ -74,7 +69,6 @@ class categoriesController {
                 exit();
             }
         }
-        // Opcional: redirigir si no es POST
         header("Location: " . BASE_URL . "categories");
         exit();
     }

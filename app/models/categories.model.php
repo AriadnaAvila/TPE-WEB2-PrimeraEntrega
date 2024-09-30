@@ -1,11 +1,13 @@
 <?php
+require_once 'config.php';
 
 class categoriesModel{
-    private $db;
+    protected $db;
 
     public function __construct() {
-        $this->db=new PDO('mysql:host=localhost;'.'dbname=db_tienda_ropa;charset=utf8','root','');
+        $this->db = new PDO("mysql:host=".MYSQL_HOST . ";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
     }
+
 
     function getCategories(){
         $query = $this->db->prepare('SELECT * FROM categorias');

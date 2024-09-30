@@ -1,4 +1,5 @@
     <?php
+    require_once 'config.php';
     require_once 'app/views/products.view.php';
     require_once 'app/models/products.model.php';
 

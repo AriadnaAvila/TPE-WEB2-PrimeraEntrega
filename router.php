@@ -87,8 +87,7 @@ switch ($params[0]) {
         break;
     case 'updateCategory':
         $categoriesController = new categoriesController();
-        $id_categoria = $params[1];
-        $categoriesController->updateCategory($id_categoria);
+        $categoriesController->updateCategory();
         break;
     default:
         echo '404 page not found';
