@@ -18,7 +18,7 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 // Proteger rutas que requieren autenticación
-$publicRoutes = ['home', 'login', 'logout'];  // Rutas públicas
+$publicRoutes = ['home', 'login', 'logout', 'categories', 'categorie', 'products', 'product'];  // Rutas públicas
 
 // Si el usuario intenta acceder a login y ya está logueado, redirigir al home
 if ($params[0] === 'login' && isset($_SESSION['user'])) {
@@ -71,24 +71,33 @@ switch ($params[0]) {
             echo '404 Category Not Found';
         }
         break;
+    // Rutas protegidas (requieren autenticación)
     case 'addCategorie':
-        $categoriesController = new categoriesController();
-        $categoriesController->addCategorie();
-        break;
-    case 'deleteCategorie':
-        $categoriesController = new categoriesController();
-        $id_categoria = $params[1];
-        $categoriesController->deleteCategory($id_categoria);
-        break;
-    case 'editCategory':
-        $categoriesController = new categoriesController();
-        $id_categoria = $params[1]; // Suponiendo que el ID se pasa como parámetro
-        $categoriesController->editCategory($id_categoria);
-        break;
-    case 'updateCategory':
-        $categoriesController = new categoriesController();
-        $categoriesController->updateCategory();
-        break;
+        case 'deleteCategorie':
+        case 'editCategory':
+        case 'updateCategory':
+            if (isset($_SESSION['user'])) {
+                $categoriesController = new categoriesController();
+                $id_categoria = isset($params[1]) ? $params[1] : null;
+                switch ($params[0]) {
+                    case 'addCategorie':
+                        $categoriesController->addCategorie();
+                        break;
+                    case 'deleteCategorie':
+                        $categoriesController->deleteCategory($id_categoria);
+                        break;
+                    case 'editCategory':
+                        $categoriesController->editCategory($id_categoria);
+                        break;
+                    case 'updateCategory':
+                        $categoriesController->updateCategory($id_categoria);
+                        break;
+                }
+            } else {
+                header("Location: " . BASE_URL . "login");
+                exit();
+            }
+            break;
     default:
         echo '404 page not found';
         break;
