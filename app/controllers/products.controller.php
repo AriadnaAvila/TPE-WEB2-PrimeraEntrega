@@ -27,4 +27,14 @@
             $this->view->showProductById($productById);
         }
 
+        public function showInformationByID($id_informacion) {
+            $informationById = $this->model->getinformationById($id_informacion);
+            if (!$informationById) {
+                
+                header('Location: ' . BASE_URL . 'error'); 
+                exit();
+            }
+            $this->view->showInformationById($informationById);
+        }
+
     }
