@@ -34,10 +34,10 @@ if (!in_array($params[0], $publicRoutes) && !isset($_SESSION['user'])) {
 
 // Rutas
 switch ($params[0]) {
-    case 'home':  
+    case 'home':
         require 'templates/home.phtml';  // Cargar el template home.phtml
         break;
-    case 'login':  
+    case 'login':
         $authController = new AuthController();
         $authController->login();
         break;
@@ -52,7 +52,7 @@ switch ($params[0]) {
     case 'product':  // Cambio aquí
         if (isset($params[1])) {
             $productsController = new productsController();
-            $productsController->showProductByID($params[1]); 
+            $productsController->showProductByID($params[1]);
         } else {
             // Manejo de error si no hay ID
             echo '404 Product Not Found';
@@ -71,33 +71,33 @@ switch ($params[0]) {
             echo '404 Category Not Found';
         }
         break;
-    // Rutas protegidas (requieren autenticación)
+        // Rutas protegidas (requieren autenticación)
     case 'addCategorie':
-        case 'deleteCategorie':
-        case 'editCategory':
-        case 'updateCategory':
-            if (isset($_SESSION['user'])) {
-                $categoriesController = new categoriesController();
-                $id_categoria = isset($params[1]) ? $params[1] : null;
-                switch ($params[0]) {
-                    case 'addCategorie':
-                        $categoriesController->addCategorie();
-                        break;
-                    case 'deleteCategorie':
-                        $categoriesController->deleteCategory($id_categoria);
-                        break;
-                    case 'editCategory':
-                        $categoriesController->editCategory($id_categoria);
-                        break;
-                    case 'updateCategory':
-                        $categoriesController->updateCategory($id_categoria);
-                        break;
-                }
-            } else {
-                header("Location: " . BASE_URL . "login");
-                exit();
+    case 'deleteCategorie':
+    case 'editCategory':
+    case 'updateCategory':
+        if (isset($_SESSION['user'])) {
+            $categoriesController = new categoriesController();
+            $id_categoria = isset($params[1]) ? $params[1] : null;
+            switch ($params[0]) {
+                case 'addCategorie':
+                    $categoriesController->addCategorie();
+                    break;
+                case 'deleteCategorie':
+                    $categoriesController->deleteCategory($id_categoria);
+                    break;
+                case 'editCategory':
+                    $categoriesController->editCategory($id_categoria);
+                    break;
+                case 'updateCategory':
+                    $categoriesController->updateCategory($id_categoria);
+                    break;
             }
-            break;
+        } else {
+            header("Location: " . BASE_URL . "login");
+            exit();
+        }
+        break;
     default:
         echo '404 page not found';
         break;

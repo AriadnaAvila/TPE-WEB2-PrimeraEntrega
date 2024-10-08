@@ -34,6 +34,16 @@ class productsModel{
         $productsByCategory = $query->fetchAll(PDO::FETCH_OBJ);
         return $productsByCategory;
     }
+
+    // Nueva función para obtener la información del producto
+    function getInformationById($id_informacion){
+        $query = $this->db->prepare('SELECT * FROM informacion WHERE id_informacion=?');
+        $query->execute([$id_informacion]);
+
+        $informationById = $query->fetch(PDO::FETCH_OBJ);
+        return $informationById;
+
+    }
     
 
 }

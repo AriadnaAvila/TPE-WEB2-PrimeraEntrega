@@ -10,4 +10,8 @@ class productsView{
         require './templates/productbyid.phtml';
     }
 
+    function showInformationById($informationById){
+        require './templates/productbyid.phtml';
+    }
+
 }
