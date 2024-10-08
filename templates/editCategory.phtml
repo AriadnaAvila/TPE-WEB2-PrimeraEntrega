@@ -1,6 +1,6 @@
 <?php require './templates/header.phtml'; ?>
 
-<form action="updateCategory" method="POST" class="bg-white p-6 rounded-lg shadow-md">
+<form action="<?= BASE_URL ?>updateCategory" method="POST" class="bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-3xl font-bold text-center mb-6">Editar Categoría</h2>
 
     <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($categorie->id_categoria) ?>">

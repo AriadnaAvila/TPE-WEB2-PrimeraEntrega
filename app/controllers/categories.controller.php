@@ -53,6 +53,7 @@ class categoriesController {
         
         if (!$categorie) {
             header("Location: " . BASE_URL . "categories");
+            var_dump($id_categoria);
             exit();
         }
         $this->view->showEditCategoryForm($categorie);
