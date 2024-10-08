@@ -10,8 +10,12 @@ class productsView{
         require './templates/productbyid.phtml';
     }
 
-    function showInformationById($informationById){
-        require './templates/productbyid.phtml';
+    function showInformationById($information){
+        require './templates/infobyid.phtml';
+    }
+
+    function showSelect($categorias){
+        require './templates/formAddProduct.phtml';
     }
 
 }

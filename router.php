@@ -18,7 +18,7 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 // Proteger rutas que requieren autenticación
-$publicRoutes = ['home', 'login', 'logout', 'categories', 'categorie', 'products', 'product'];  // Rutas públicas
+$publicRoutes = ['home', 'login', 'logout', 'categories', 'categorie', 'products', 'product', 'info'];  // Rutas públicas
 
 // Si el usuario intenta acceder a login y ya está logueado, redirigir al home
 if ($params[0] === 'login' && isset($_SESSION['user'])) {
@@ -49,6 +49,11 @@ switch ($params[0]) {
         $productsController = new productsController();
         $productsController->showProducts();
         break;
+    case 'info':
+        $productsController = new productsController();
+        $id_producto = $params[1];
+        $productsController->showInformationByID($id_producto);
+        break;
     case 'product':  // Cambio aquí
         if (isset($params[1])) {
             $productsController = new productsController();
@@ -73,6 +78,7 @@ switch ($params[0]) {
         break;
         // Rutas protegidas (requieren autenticación)
     case 'addCategorie':
+    case 'addProduct':
     case 'deleteCategorie':
     case 'editCategory':
     case 'updateCategory':
@@ -83,6 +89,9 @@ switch ($params[0]) {
                 case 'addCategorie':
                     $categoriesController->addCategorie();
                     break;
+                case 'addProduct':
+                    $productsController = new productsController();
+                    $productsController->addProduct();
                 case 'deleteCategorie':
                     $categoriesController->deleteCategory($id_categoria);
                     break;

@@ -1,0 +1,48 @@
+<?php require './templates/header.phtml'; ?>
+
+<!-- Hero Section para mostrar el título del producto -->
+<section class="relative bg-cover bg-center h-80" style="background-image: url('https://wallpapers.com/images/featured/tienda-i5s6es944n29q9sp.jpg');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="container mx-auto flex items-center justify-center h-full relative z-10">
+        <h1 class="text-white text-5xl md:text-6xl font-bold text-center">
+            Detalles del Producto
+        </h1>
+    </div>
+</section>
+
+<div class="container mx-auto p-6">
+    <!-- Mostrar detalles del producto -->
+    <?php if ($information): ?>
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-center">
+            <h2 class="text-3xl font-bold mb-4"><?= htmlspecialchars($information->tipo) ?></h2>
+            <p class="text-gray-700">Precio: <span class="text-green-500">$<?= htmlspecialchars($information->precio) ?> ARS</span></p>
+            <p class="text-gray-700">Categoría: <span class="text-blue-500"><?= htmlspecialchars($information->nombre_categoria) ?></span></p>
+        </div>
+
+        <!-- Información adicional del producto -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white border rounded-lg shadow-md p-4 text-center">
+                <h3 class="text-lg font-semibold mb-2">Detalles del Producto</h3>
+                <p class="text-gray-700"><strong>Talle:</strong> <?= htmlspecialchars($information->talle) ?></p>
+                <p class="text-gray-700"><strong>Color:</strong> <?= htmlspecialchars($information->color) ?></p>
+                <p class="text-gray-700"><strong>Stock Disponible:</strong> <?= htmlspecialchars($information->stock) ?></p>
+            </div>
+
+            <div class="bg-white border rounded-lg shadow-md p-4 text-center">
+                <img src="https://via.placeholder.com/300x200" alt="Imagen del producto" class="w-full h-48 object-cover rounded-lg">
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-center">
+            <strong class="text-red-500">No se encontró información para este producto.</strong>
+        </div>
+    <?php endif; ?>
+
+     <!-- Botones de acciones del producto -->
+     <div class="flex justify-center mt-6">
+        <a href="edit/<?= $information->id_producto ?>" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition mr-4">Editar Producto</a>
+        <a href="delete/<?= $information->id_producto ?>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar Producto</a>
+    </div>
+</div>
+
+<?php require './templates/footer.phtml'; ?>

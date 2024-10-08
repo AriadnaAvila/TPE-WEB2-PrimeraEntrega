@@ -35,15 +35,27 @@ class productsModel{
         return $productsByCategory;
     }
 
-    // Nueva función para obtener la información del producto
-    function getInformationById($id_informacion){
-        $query = $this->db->prepare('SELECT * FROM informacion WHERE id_informacion=?');
-        $query->execute([$id_informacion]);
+    function getProductDetailsById($id_producto) {
+        $query = $this->db->prepare(
+            'SELECT p.*, i.talle, i.color, i.stock, c.nombre_categoria
+            FROM productos p
+            JOIN informacion i ON p.id_producto = i.id_producto
+            JOIN categorias c ON p.id_categoria = c.id_categoria
+            WHERE p.id_producto = ?'
+        );
+        $query->execute([$id_producto]);
 
-        $informationById = $query->fetch(PDO::FETCH_OBJ);
-        return $informationById;
-
+        $information = $query->fetch(PDO::FETCH_OBJ);
+        return $information;  // Retorna un solo producto con su categoría
     }
+    
+    function insertProduct($tipo, $precio, $id_categoria) {
+        $query = $this->db->prepare('INSERT INTO productos (tipo, precio, id_categoria) VALUES (?, ?, ?)');
+        $query->execute([$tipo, $precio, $id_categoria]);
+    
+        return $this->db->lastInsertId();
+    }
+    
     
 
 }
