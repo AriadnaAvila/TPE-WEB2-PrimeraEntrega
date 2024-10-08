@@ -16,7 +16,7 @@
         }
 
         public function showAddProductForm(){
-            $categorias = $this->cmodel->getCategories();
+            $categorias = $this->cmodel->getCategoriesById();
             $this->view->showSelect($categorias);
         }
 
@@ -50,6 +50,12 @@
             $this->model->insertProduct($tipo, $precio, $id_categoria);
             header("Location: " . BASE_URL. "products");
             exit();
+        }
+
+        public function deleteProductById($id_producto) {
+            $this->model->deleteProductById($id_producto);
+            header("Location: " . BASE_URL . "products");
+            
         }
 
     }

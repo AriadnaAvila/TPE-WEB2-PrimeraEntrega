@@ -80,6 +80,7 @@ switch ($params[0]) {
     case 'addCategorie':
     case 'addProduct':
     case 'deleteCategorie':
+    case 'deleteProduct':
     case 'editCategory':
     case 'updateCategory':
         if (isset($_SESSION['user'])) {
@@ -95,6 +96,9 @@ switch ($params[0]) {
                 case 'deleteCategorie':
                     $categoriesController->deleteCategory($id_categoria);
                     break;
+                case 'deleteProduct':
+                    $productsController = new productsController();
+                    $productsController->deleteProductById($id_producto);
                 case 'editCategory':
                     $categoriesController->editCategory($id_categoria);
                     break;

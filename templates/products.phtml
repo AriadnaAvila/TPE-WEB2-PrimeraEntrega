@@ -22,6 +22,9 @@
                     <h3 class="text-lg font-semibold"><?= htmlspecialchars($product->tipo) ?></h3>
                     <p class="text-gray-600">Precio: <span class="text-green-500">$<?= htmlspecialchars($product->precio) ?> ARS</span></p>
                     <a href='info/<?=$product->id_producto?>' class="mt-2 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">Detalles</a>
+                    <a href='deleteProduct/<?=$product->id_producto?>' class="mt-2 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">Eliminar</a>
+                    <a href='editProduct/<?=$product->id_producto?>' class="mt-2 inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all">Editar</a>
+
                 </div>
             </div>
         <?php endforeach; ?>
