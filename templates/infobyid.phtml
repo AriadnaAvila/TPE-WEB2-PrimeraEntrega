@@ -1,50 +1,55 @@
 <?php require './templates/header.phtml'; ?>
 
-<!-- Hero Section para mostrar el título del producto -->
-<section class="bg-gray-100 py-16">
-    <div class="container mx-auto px-4">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Detalles del Producto
-        </h1>
-    </div>
-</section>
+<div class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Detalles del Producto</h1>
 
-<div class="container mx-auto px-4 py-12">
-    <!-- Mostrar detalles del producto -->
-    <?php if ($information): ?>
-        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-12">
-            <div class="relative h-64 overflow-hidden">
-                <img src="https://via.placeholder.com/300x200" alt="Imagen del producto" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                    <h2 class="text-white text-3xl font-bold mb-4"><?= htmlspecialchars($information->tipo) ?></h2>
-                </div>
-            </div>
-            <div class="p-6">
-                <p class="text-gray-700 mb-2">Precio: <span class="text-green-500">$<?= htmlspecialchars($information->precio) ?> ARS</span></p>
-                <p class="text-gray-700 mb-4">Categoría: <span class="text-blue-500"><?= htmlspecialchars($information->nombre_categoria) ?></span></p>
+        <?php if ($information): ?>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0">
+                        <img class="h-96 w-full object-cover md:w-96" src="https://via.placeholder.com/400x400" alt="Imagen del producto">
+                    </div>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-sm text-black font-semibold"><?= htmlspecialchars($information->nombre_categoria) ?></div>
+                        <h2 class="mt-2 text-3xl leading-8 font-bold text-gray-900"><?= htmlspecialchars($information->tipo) ?></h2>
+                        <p class="mt-4 text-2xl font-bold text-black">$<?= htmlspecialchars($information->precio) ?> ARS</p>
+                        
+                        <div class="mt-6 border-t border-gray-200 pt-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Detalles del Producto</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-500">Talle</p>
+                                    <p class="mt-1 text-sm text-gray-900"><?= htmlspecialchars($information->talle) ?></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-500">Color</p>
+                                    <p class="mt-1 text-sm text-gray-900"><?= htmlspecialchars($information->color) ?></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-500">Stock Disponible</p>
+                                    <p class="mt-1 text-sm text-gray-900"><?= htmlspecialchars($information->stock) ?></p>
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Información adicional del producto -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-white border rounded-lg shadow-md p-4 text-center">
-                        <h3 class="text-lg font-semibold mb-2">Detalles del Producto</h3>
-                        <p class="text-gray-700"><strong>Talle:</strong> <?= htmlspecialchars($information->talle) ?></p>
-                        <p class="text-gray-700"><strong>Color:</strong> <?= htmlspecialchars($information->color) ?></p>
-                        <p class="text-gray-700"><strong>Stock Disponible:</strong> <?= htmlspecialchars($information->stock) ?></p>
+                        <div class="mt-8 flex space-x-4">
+                            <a href="edit/<?= $information->id_producto ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                Editar Producto
+                            </a>
+                            <a href="deleteProduct/<?= $information->id_producto ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                Eliminar Producto
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php else: ?>
-        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-12" role="alert">
-            <p class="font-bold">Error</p>
-            <p>No se encontró información para este producto.</p>
-        </div>
-    <?php endif; ?>
-
-    <!-- Botones de acciones del producto -->
-    <div class="flex justify-center mt-6">
-        <a href="edit/<?= $information->id_producto ?>" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition mr-4">Editar Producto</a>
-        <a href="deleteProduct/<?= $information->id_producto ?>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar Producto</a>
+        <?php else: ?>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-8" role="alert">
+                <p class="font-bold">Error</p>
+                <p>No se encontró información para este producto.</p>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 

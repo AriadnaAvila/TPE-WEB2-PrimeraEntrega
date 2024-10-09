@@ -32,11 +32,13 @@ class categoriesModel{
     }
 
     function insertCategorie($nombre_categoria){
+        // Inserta la categoría sin manejar imágenes
         $query = $this->db->prepare('INSERT INTO categorias (nombre_categoria) VALUES (?)');
         $query->execute([$nombre_categoria]);
-
+    
         return $this->db->lastInsertId();
     }
+    
 
     // Función para eliminar una categoría
     public function deleteCategoryById($id_categoria) {
