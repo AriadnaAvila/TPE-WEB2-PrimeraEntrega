@@ -21,6 +21,7 @@
         {
             $categorias = $this->cmodel->getCategories();
             $this->view->showSelect($categorias);
+            
         }
 
         public function showProducts()
