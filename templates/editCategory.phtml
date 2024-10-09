@@ -1,13 +1,17 @@
 <?php require './templates/header.phtml'; ?>
 
-<form action="<?= BASE_URL ?>updateCategory" method="POST" class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-3xl font-bold text-center mb-6">Editar Categoría</h2>
-    <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($categorie->id_categoria) ?>">
-    <div class="mb-4">
-        <label class="block text-sm font-medium">Nombre de la Categoría</label>
-        <input type="text" name="nombre_categoria" value="<?= htmlspecialchars($categorie->nombre_categoria) ?>" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 transition">
-    </div>
-    <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-200 ease-in-out">Actualizar Categoría</button>
-</form>
+<div class="container mx-auto px-4 py-12">
+    <form action="<?= BASE_URL ?>updateCategory" method="POST" class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-center mb-6">Editar Categoría</h2>
+        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($categorie->id_categoria) ?>">
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Nombre de la Categoría</label>
+            <input type="text" name="nombre_categoria" value="<?= htmlspecialchars($categorie->nombre_categoria) ?>" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 transition">
+        </div>
+        
+        <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-200 ease-in-out">Actualizar Categoría</button>
+    </form>
+</div>
 
 <?php require './templates/footer.phtml'; ?>

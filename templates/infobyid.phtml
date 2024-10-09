@@ -1,45 +1,48 @@
 <?php require './templates/header.phtml'; ?>
 
 <!-- Hero Section para mostrar el título del producto -->
-<section class="relative bg-cover bg-center h-80" style="background-image: url('https://wallpapers.com/images/featured/tienda-i5s6es944n29q9sp.jpg');">
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="container mx-auto flex items-center justify-center h-full relative z-10">
-        <h1 class="text-white text-5xl md:text-6xl font-bold text-center">
+<section class="bg-gray-100 py-16">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Detalles del Producto
         </h1>
     </div>
 </section>
 
-<div class="container mx-auto p-6">
+<div class="container mx-auto px-4 py-12">
     <!-- Mostrar detalles del producto -->
     <?php if ($information): ?>
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-center">
-            <h2 class="text-3xl font-bold mb-4"><?= htmlspecialchars($information->tipo) ?></h2>
-            <p class="text-gray-700">Precio: <span class="text-green-500">$<?= htmlspecialchars($information->precio) ?> ARS</span></p>
-            <p class="text-gray-700">Categoría: <span class="text-blue-500"><?= htmlspecialchars($information->nombre_categoria) ?></span></p>
-        </div>
-
-        <!-- Información adicional del producto -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-white border rounded-lg shadow-md p-4 text-center">
-                <h3 class="text-lg font-semibold mb-2">Detalles del Producto</h3>
-                <p class="text-gray-700"><strong>Talle:</strong> <?= htmlspecialchars($information->talle) ?></p>
-                <p class="text-gray-700"><strong>Color:</strong> <?= htmlspecialchars($information->color) ?></p>
-                <p class="text-gray-700"><strong>Stock Disponible:</strong> <?= htmlspecialchars($information->stock) ?></p>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-12">
+            <div class="relative h-64 overflow-hidden">
+                <img src="https://via.placeholder.com/300x200" alt="Imagen del producto" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                    <h2 class="text-white text-3xl font-bold mb-4"><?= htmlspecialchars($information->tipo) ?></h2>
+                </div>
             </div>
+            <div class="p-6">
+                <p class="text-gray-700 mb-2">Precio: <span class="text-green-500">$<?= htmlspecialchars($information->precio) ?> ARS</span></p>
+                <p class="text-gray-700 mb-4">Categoría: <span class="text-blue-500"><?= htmlspecialchars($information->nombre_categoria) ?></span></p>
 
-            <div class="bg-white border rounded-lg shadow-md p-4 text-center">
-                <img src="https://via.placeholder.com/300x200" alt="Imagen del producto" class="w-full h-48 object-cover rounded-lg">
+                <!-- Información adicional del producto -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white border rounded-lg shadow-md p-4 text-center">
+                        <h3 class="text-lg font-semibold mb-2">Detalles del Producto</h3>
+                        <p class="text-gray-700"><strong>Talle:</strong> <?= htmlspecialchars($information->talle) ?></p>
+                        <p class="text-gray-700"><strong>Color:</strong> <?= htmlspecialchars($information->color) ?></p>
+                        <p class="text-gray-700"><strong>Stock Disponible:</strong> <?= htmlspecialchars($information->stock) ?></p>
+                    </div>
+                </div>
             </div>
         </div>
     <?php else: ?>
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6 text-center">
-            <strong class="text-red-500">No se encontró información para este producto.</strong>
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-12" role="alert">
+            <p class="font-bold">Error</p>
+            <p>No se encontró información para este producto.</p>
         </div>
     <?php endif; ?>
 
-     <!-- Botones de acciones del producto -->
-     <div class="flex justify-center mt-6">
+    <!-- Botones de acciones del producto -->
+    <div class="flex justify-center mt-6">
         <a href="edit/<?= $information->id_producto ?>" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition mr-4">Editar Producto</a>
         <a href="deleteProduct/<?= $information->id_producto ?>" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar Producto</a>
     </div>

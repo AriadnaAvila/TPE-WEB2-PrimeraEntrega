@@ -1,19 +1,28 @@
 <?php if (isset($_SESSION['user'])): ?>
-    <form action="addProduct" method="POST" class="mt-6 bg-white p-4 rounded-lg shadow">
-        <div>
-            <label class="block text-sm font-medium">PRODUCTO</label>
-            <input type="text" name="tipo" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
+    <div class="container mx-auto px-4 py-12">
+        <form action="addProduct" method="POST" class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Agregar Nuevo Producto</h2>
             
-            <label class="block text-sm font-medium">PRECIO</label>
-            <input type="text" name="precio" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">PRODUCTO</label>
+                <input type="text" name="tipo" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
+            </div>
 
-            <label for="categoria">Categoría:</label>
-            <select name="id_categoria" id="categoria" required>
-                <?php foreach ($categorias as $categoria): ?>
-                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->nombre_categoria ?></option>
-                <?php endforeach; ?>
-            </select>        
-        </div>
-        <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Agregar Producto</button>
-    </form>
-<?php endif; ?> 
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">PRECIO</label>
+                <input type="text" name="precio" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="categoria" class="block text-sm font-medium mb-1">Categoría:</label>
+                <select name="id_categoria" id="categoria" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500">
+                    <?php foreach ($categorias as $categoria): ?>
+                        <option value="<?= $categoria->id_categoria ?>"><?= htmlspecialchars($categoria->nombre_categoria) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Agregar Producto</button>
+        </form>
+    </div>
+<?php endif; ?>
