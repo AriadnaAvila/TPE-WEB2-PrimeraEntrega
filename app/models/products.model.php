@@ -63,14 +63,8 @@ class productsModel
 
     public function deleteProductById($id_producto)
     {
-        // Eliminar la información relacionada en la tabla informacion
-        $queryInfo = $this->db->prepare('DELETE FROM informacion WHERE id_producto = ?');
-        $queryInfo->execute([$id_producto]);
-
-        // Eliminar el producto de la tabla productos
         $queryProduct = $this->db->prepare('DELETE FROM productos WHERE id_producto = ?');
         $queryProduct->execute([$id_producto]);
 
-        
     }
 }
