@@ -22,4 +22,9 @@ class productsView
     {
         require './templates/formAddProduct.phtml';
     }
+
+    function showEditProductForm($product, $categories, $info){
+        require './templates/editProductById.phtml';
+        
+    }
 }

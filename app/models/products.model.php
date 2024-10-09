@@ -60,16 +60,26 @@ class productsModel
 
         return $this->db->lastInsertId();
     }
-    
-    public function deleteProductById($id_producto) {
+
+    public function deleteProductById($id_producto)
+    {
         // Primero eliminamos las filas de la tabla 'informacion' que están relacionadas con el producto
         $query = $this->db->prepare('DELETE FROM informacion WHERE id_producto = ?');
         $query->execute([$id_producto]);
-    
+
         // Luego eliminamos el producto de la tabla 'productos'
         $query = $this->db->prepare('DELETE FROM productos WHERE id_producto = ?');
         $query->execute([$id_producto]);
     }
-    
 
+    public function updateProduct($id_producto, $tipo, $precio, $id_categoria, $talle, $color, $stock)
+    {
+        // Actualizar el producto
+        $query = $this->db->prepare('UPDATE productos SET tipo = ?, precio = ?, id_categoria = ? WHERE id_producto = ?');
+        $query->execute([$tipo, $precio, $id_categoria, $id_producto]);
+
+        // Actualizar la información del producto (talle, color, stock)
+        $query_info = $this->db->prepare('UPDATE informacion SET talle = ?, color = ?, stock = ? WHERE id_producto = ?');
+        $query_info->execute([$talle, $color, $stock, $id_producto]);
+    }
 }

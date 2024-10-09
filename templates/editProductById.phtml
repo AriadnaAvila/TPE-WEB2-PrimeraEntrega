@@ -1,0 +1,82 @@
+<?php require './templates/header.phtml'; ?>
+
+<div class="bg-gray-100 min-h-screen py-12">
+    <div class="container mx-auto px-4 max-w-md">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Editar Producto</h1>
+
+        <form action="<?= BASE_URL ?>updateProduct" method="POST" class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="p-6 space-y-6">
+                <input type="hidden" name="id_producto" value="<?= htmlspecialchars($product->id_producto) ?>">
+
+                <!-- Nombre del producto -->
+                <div>
+                    <label for="tipo" class="block text-sm font-medium text-gray-700 mb-1">Nombre del Producto</label>
+                    <input type="text" id="tipo" name="tipo" value="<?= htmlspecialchars($product->tipo) ?>" required
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:border-black focus:ring-1 focus:ring-black
+                                  transition duration-150 ease-in-out">
+                </div>
+
+                <!-- Precio del producto -->
+                <div>
+                    <label for="precio" class="block text-sm font-medium text-gray-700 mb-1">Precio</label>
+                    <input type="number" id="precio" name="precio" value="<?= htmlspecialchars($product->precio) ?>" required
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:border-black focus:ring-1 focus:ring-black
+                                  transition duration-150 ease-in-out">
+                </div>
+
+                <!-- Selección de categoría -->
+                <div>
+                    <label for="id_categoria" class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                    <select id="id_categoria" name="id_categoria" required
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:border-black focus:ring-1 focus:ring-black
+                                  transition duration-150 ease-in-out">
+                        <?php foreach ($categories as $categoria): ?>
+                            <option value="<?= htmlspecialchars($categoria->id_categoria) ?>"
+                                <?= $product->id_categoria == $categoria->id_categoria ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($categoria->nombre_categoria) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <!-- Información adicional (Talle, Color, Stock) -->
+                <div>
+                    <label for="talle" class="block text-sm font-medium text-gray-700 mb-1">Talle</label>
+                    <input type="text" id="talle" name="talle" value="<?= htmlspecialchars($info->talle) ?>" required
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:border-black focus:ring-1 focus:ring-black
+                                  transition duration-150 ease-in-out">
+                </div>
+
+                <div>
+                    <label for="color" class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+                    <input type="text" id="color" name="color" value="<?= htmlspecialchars($info->color) ?>" required
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:border-black focus:ring-1 focus:ring-black
+                                  transition duration-150 ease-in-out">
+                </div>
+
+                <div>
+                    <label for="stock" class="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+                    <input type="number" id="stock" name="stock" value="<?= htmlspecialchars($info->stock) ?>" required
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                                  focus:outline-none focus:border-black focus:ring-1 focus:ring-black
+                                  transition duration-150 ease-in-out">
+                </div>
+            </div>
+
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button type="submit"
+                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
+                               transition duration-150 ease-in-out transform hover:-translate-y-0.5">
+                    Actualizar Producto
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<?php require './templates/footer.phtml'; ?>

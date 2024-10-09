@@ -21,7 +21,6 @@
         {
             $categorias = $this->cmodel->getCategories();
             $this->view->showSelect($categorias);
-            
         }
 
         public function showProducts()
@@ -63,5 +62,44 @@
         {
             $this->model->deleteProductById($id_producto);
             header("Location: " . BASE_URL . "products");
+        }
+
+        public function editProductById($id_producto)
+        {
+            $product = $this->model->getProductById($id_producto);
+
+            if (!$product) {
+                header("Location: " . BASE_URL . "puducts");
+                var_dump($product);
+                exit();
+            }
+
+            // Obtener las categorías para mostrar en el formulario
+            $categories = $this->cmodel->getCategories();
+
+            // Obtener la información adicional del producto (talle, color, stock)
+            $info = $this->model->getProductDetailsById($id_producto);
+
+            // Mostrar el formulario de edición con el producto, sus categorías e información adicional
+            $this->view->showEditProductForm($product, $categories, $info);
+        }
+
+        public function updateProduct()
+        {
+            // Suponiendo que los datos vienen de un formulario POST
+            $id_producto = $_POST['id_producto'];
+            $tipo = $_POST['tipo'];
+            $precio = $_POST['precio'];
+            $id_categoria = $_POST['id_categoria'];
+            $talle = $_POST['talle'];
+            $color = $_POST['color'];
+            $stock = $_POST['stock'];
+
+            // Llamar al modelo para actualizar el producto
+            $this->model->updateProduct($id_producto, $tipo, $precio, $id_categoria, $talle, $color, $stock);
+
+            // Redirigir después de la actualización, por ejemplo, a la lista de productos
+            header("Location: " . BASE_URL . "products");
+            
         }
     }
