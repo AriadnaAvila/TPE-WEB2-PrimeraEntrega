@@ -11,15 +11,15 @@
 
 <div class="container mx-auto px-4 py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <?php foreach($categories as $categorie): ?>
+        <?php foreach ($categories as $categorie): ?>
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4"><?= htmlspecialchars($categorie->nombre_categoria) ?></h3>
                     <div class="flex flex-wrap gap-2">
-                        <a href='categorie/<?=$categorie->id_categoria?>' class="inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">Ver productos</a>
+                        <a href='categorie/<?= $categorie->id_categoria ?>' class="inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">Ver productos</a>
                         <?php if (isset($_SESSION['user'])): ?>
-                            <a href='editCategory/<?=$categorie->id_categoria?>' class="inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">Editar</a>
-                            <form action="deleteCategorie/<?=$categorie->id_categoria?>" method="POST" class="inline-block">
+                            <a href='editCategory/<?= $categorie->id_categoria ?>' class="inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">Editar</a>
+                            <form action="deleteCategorie/<?= $categorie->id_categoria ?>" method="POST" class="inline-block">
                                 <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">Eliminar</button>
                             </form>
                         <?php endif; ?>

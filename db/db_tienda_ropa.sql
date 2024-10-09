@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 26-09-2024 a las 22:37:49
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-10-2024 a las 19:06:43
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -204,7 +204,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `informacion`
@@ -232,7 +232,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `informacion`
 --
 ALTER TABLE `informacion`
-  ADD CONSTRAINT `informacion_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
+  ADD CONSTRAINT `informacion_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `productos`
