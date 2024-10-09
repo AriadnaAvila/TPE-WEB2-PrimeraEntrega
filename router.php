@@ -93,12 +93,15 @@ switch ($params[0]) {
                 case 'addProduct':
                     $productsController = new productsController();
                     $productsController->addProduct();
+                    break;
                 case 'deleteCategorie':
                     $categoriesController->deleteCategory($id_categoria);
                     break;
                 case 'deleteProduct':
+                    $id_producto = isset($params[1]) ? $params[1] : null;
                     $productsController = new productsController();
                     $productsController->deleteProductById($id_producto);
+                    break;
                 case 'editCategory':
                     $categoriesController->editCategory($id_categoria);
                     break;

@@ -2,6 +2,11 @@
 require_once 'config.php';
 
 class AuthController {
+    protected $db;
+
+    public function __construct() {
+        $this->db = new PDO("mysql:host=".MYSQL_HOST . ";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
+    }
 
     public function showLoginForm() {
         // Si el usuario ya está logueado, redirigir a otra parte (por ejemplo, al home)
