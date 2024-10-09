@@ -19,7 +19,7 @@
         <?php if (isset($products) && !empty($products)): ?>
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Productos de la categoría</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <?php foreach($products as $product): ?>
+                <?php foreach ($products as $product): ?>
                     <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-900 mb-2"><?= htmlspecialchars($product->nombre_producto) ?></h3>

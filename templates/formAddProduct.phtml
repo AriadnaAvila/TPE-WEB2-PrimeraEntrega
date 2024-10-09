@@ -2,27 +2,27 @@
     <div class="bg-gray-100 min-h-[75vh] py-12 mb-16">
         <div class="container mx-auto px-4 max-w-md">
             <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Agregar Nuevo Producto</h2>
-            
+
             <form action="addProduct" method="POST" class="bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="p-6 space-y-6">
                     <div>
                         <label for="tipo" class="block text-sm font-medium text-gray-700 mb-1">PRODUCTO</label>
-                        <input type="text" id="tipo" name="tipo" required 
-                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                        <input type="text" id="tipo" name="tipo" required
+                            class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                       focus:outline-none focus:border-black focus:ring-1 focus:ring-black">
                     </div>
 
                     <div>
                         <label for="precio" class="block text-sm font-medium text-gray-700 mb-1">PRECIO</label>
-                        <input type="text" id="precio" name="precio" required 
-                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                        <input type="text" id="precio" name="precio" required
+                            class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                                       focus:outline-none focus:border-black focus:ring-1 focus:ring-black">
                     </div>
 
                     <div>
                         <label for="categoria" class="block text-sm font-medium text-gray-700 mb-1">CATEGORÍA</label>
-                        <select id="categoria" name="id_categoria" required 
-                                class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm
+                        <select id="categoria" name="id_categoria" required
+                            class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm
                                        focus:outline-none focus:border-black focus:ring-1 focus:ring-black">
                             <?php foreach ($categorias as $categoria): ?>
                                 <option value="<?= $categoria->id_categoria ?>"><?= htmlspecialchars($categoria->nombre_categoria) ?></option>
@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button type="submit" 
-                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                    <button type="submit"
+                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
                         Agregar Producto
                     </button>
                 </div>
