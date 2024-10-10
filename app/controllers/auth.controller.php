@@ -23,12 +23,12 @@ class AuthController {
     public function login()
     {
         // Captura los datos del formulario
-        $email = $_POST['email'];
+        $usuario = $_POST['usuario'];
         $password = $_POST['password'];
 
         // Validar y autenticar al usuario (simulación)
-        if ($email === 'admin@example.com' && $password === 'password') {
-            $_SESSION['user'] = $email;  // Guardamos el email en la sesión
+        if ($usuario === 'webadmin' && $password === 'admin') {
+            $_SESSION['user'] = $usuario;  // Guardamos el email en la sesión
             header('Location: ' . BASE_URL . 'products');  // Redirige a la página de productos
         } else {
             // Si falla la autenticación, redirige de nuevo al home
