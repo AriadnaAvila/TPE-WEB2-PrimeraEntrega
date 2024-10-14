@@ -3,7 +3,8 @@ session_start();  // Iniciar la sesión
 
 require_once 'app/controllers/products.controller.php';
 require_once 'app/controllers/categories.controller.php';
-require_once 'app/controllers/auth.controller.php';  // Añadimos el AuthController
+require_once 'app/controllers/auth.controller.php';
+require_once 'app/controllers/home.controller.php';
 
 // Definimos la URL base
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
@@ -35,7 +36,8 @@ if (!in_array($params[0], $publicRoutes) && !isset($_SESSION['user'])) {
 // Rutas
 switch ($params[0]) {
     case 'home':
-        require 'templates/home.phtml';  // Cargar el template home.phtml
+        $homeController = new homeController();
+        $homeController->showHome();
         break;
     case 'login':
         $authController = new AuthController();
