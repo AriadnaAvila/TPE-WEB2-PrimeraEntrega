@@ -47,7 +47,7 @@ La base de datos está compuesta por dos tablas principales:
 > 🔄 **Uno a Muchos**:  
 > La relación entre la tabla `productos` y `categorias` es de uno a N (_uno a muchos_), donde cada producto en la tabla `productos` tiene una entrada correspondiente en `categorias` que contiene información más detallada.
 
----
+## ![Diagrama de la relación entre tablas](imagenes/relacion.png)
 
 ## 🎯 **Objetivo**
 
@@ -110,5 +110,3 @@ La base de datos está compuesta por dos tablas principales:
 
 - **Usuario**: `webadmin`
 - **Contraseña**: `admin`
-
-![Diagrama de la relación entre tablas](imagenes/relacion.png)
