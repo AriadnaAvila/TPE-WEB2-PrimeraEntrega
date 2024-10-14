@@ -56,4 +56,4 @@ La base de datos está compuesta por dos tablas principales:
 
 ---
 
-![Diagrama de la relación entre tablas](images/relacion.png)
+![Diagrama de la relación entre tablas](imagenes/relacion.png)
