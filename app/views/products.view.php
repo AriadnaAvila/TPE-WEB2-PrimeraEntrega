@@ -1,25 +1,20 @@
 <?php
 
-class productsView
-{
+class productsView{
 
-    public function showProducts($products)
-    {
+    public function showProducts($products){
         require './templates/products.phtml';
     }
 
-    function showProductById($productById)
-    {
+    function showProductById($productById){
         require './templates/productbyid.phtml';
     }
 
-    function showInformationById($information)
-    {
+    function showInformationById($information){
         require './templates/infobyid.phtml';
     }
 
-    function showSelect($categorias)
-    {
+    function showSelect($categorias){
         require './templates/formAddProduct.phtml';
     }
 

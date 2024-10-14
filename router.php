@@ -12,7 +12,11 @@ define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'
 $action = 'home';
 
 if (!empty($_GET['action'])) {
-    $action = $_GET['action'];
+    $action = $_GET['action'];public function showProducts()
+    {
+        $products = $this->model->getProducts();
+        $this->view->showProducts($products);
+    }
 }
 
 $params = explode('/', $action);
@@ -47,8 +51,9 @@ switch ($params[0]) {
         break;
     case 'products':
         $productsController = new productsController();
-        $productsController->showProducts();
-        break;
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $productsController->showProducts($page);
+        break;        
     case 'info':
         $productsController = new productsController();
         $id_producto = $params[1];

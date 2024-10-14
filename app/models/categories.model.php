@@ -1,20 +1,17 @@
 <?php
 require_once 'config.php';
 
-class categoriesModel
-{
+class categoriesModel{
     protected $db;
 
-    public function __construct()
-    {
+    public function __construct(){
         // Conectar a la base de datos
         $this->db = new PDO("mysql:host=" . MYSQL_HOST . ";dbname=" . MYSQL_DB . ";charset=utf8", MYSQL_USER, MYSQL_PASS);
         $this->_deploy(); // Llamar a la función _deploy() al construir el modelo
     }
 
     // Función para verificar y crear las tablas si no existen
-    private function _deploy()
-    {
+    private function _deploy(){
         $query = $this->db->query('SHOW TABLES');
         $tables = $query->fetchAll();
 
@@ -45,8 +42,7 @@ class categoriesModel
         }
     }
 
-    function getCategories()
-    {
+    function getCategories(){
         $query = $this->db->prepare('SELECT * FROM categorias');
         $query->execute();
 
@@ -54,8 +50,7 @@ class categoriesModel
         return $categories;
     }
 
-    function getCategorieById($id_categoria)
-    {
+    function getCategorieById($id_categoria){
         $query = $this->db->prepare('SELECT * FROM categorias WHERE id_categoria=?');
         $query->execute([$id_categoria]);
 
@@ -74,8 +69,7 @@ class categoriesModel
         return $this->db->lastInsertId();
     }
 
-    public function deleteCategoryById($id_categoria)
-    {
+    public function deleteCategoryById($id_categoria){
         $query = $this->db->prepare('DELETE FROM categorias WHERE id_categoria = ?');
         $query->execute([$id_categoria]);
     }

@@ -4,27 +4,23 @@ require_once 'app/views/categories.view.php';
 require_once 'app/models/categories.model.php';
 require_once 'app/models/products.model.php';
 
-class categoriesController
-{
+class categoriesController{
     private $productsModel;
     private $categoriesModel;
     private $view;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->productsModel = new productsModel();
         $this->categoriesModel = new categoriesModel();
         $this->view = new categoriesView();
     }
 
-    public function showCategories()
-    {
+    public function showCategories(){
         $categories = $this->categoriesModel->getCategories();
         $this->view->showCategories($categories);
     }
 
-    public function showCategorieById($id_categoria)
-    {
+    public function showCategorieById($id_categoria){
         $categorieById = $this->categoriesModel->getCategorieById($id_categoria);
         if (!$categorieById) {
             header('Location: ' . BASE_URL . 'categories');
@@ -36,8 +32,7 @@ class categoriesController
     }
 
 
-    function addCategorie()
-    {
+    function addCategorie(){
         $nombre_categoria = $_POST['nombre_categoria'];
 
         $this->categoriesModel->insertCategorie($nombre_categoria);
@@ -45,8 +40,7 @@ class categoriesController
         exit();
     }
 
-    public function deleteCategory($id_categoria)
-    {
+    public function deleteCategory($id_categoria){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->categoriesModel->deleteCategoryById($id_categoria);
             header("Location: " . BASE_URL . "categories");
@@ -54,8 +48,7 @@ class categoriesController
         }
     }
 
-    public function editCategory($id_categoria)
-    {
+    public function editCategory($id_categoria){
         $categorie = $this->categoriesModel->getCategorieById($id_categoria);
 
         if (!$categorie) {
