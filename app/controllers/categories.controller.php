@@ -60,14 +60,12 @@ class categoriesController
 
         if (!$categorie) {
             header("Location: " . BASE_URL . "categories");
-            var_dump($id_categoria);
             exit();
         }
         $this->view->showEditCategoryForm($categorie);
     }
 
-    public function updateCategory()
-    {
+    public function updateCategory(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_categoria = $_POST['id_categoria'];
             $nombre_categoria = $_POST['nombre_categoria'];

@@ -1,39 +1,59 @@
-# Trabajo Práctico: Tienda de Ropa
+# 🛍️ **Trabajo Práctico: Tienda de Ropa**
 
-### Participantes:
-- *Alumno 1: Ariadna, Avila*
-- *Alumno 2: Juan Marcos, Lorenzo*
+## **👥 Participantes**:
 
-## Descripción del Trabajo
-Este trabajo práctico consiste en el diseño y desarrollo para una web de tienda de ropa, la cual el usuario podrá interactuar en este caso con las distintas prendas disponibles, su stock y su talle para poder agregarla a su carrito. La base de datos está diseñada para gestionar los productos y su información asociada, permitiendo a la tienda administrar de manera eficiente su catálogo de productos.
+- **Alumno 1:** Ariadna Avila
+- **Alumno 2:** Juan Marcos Lorenzo
 
-## Estructura de la Base de Datos
+---
+
+> ⚠️ **Descripción del Trabajo**  
+> Este trabajo práctico consiste en el diseño y desarrollo de una web para una tienda de ropa. Los usuarios podrán interactuar con las distintas prendas disponibles, gestionando el stock, seleccionando talles y añadiendo productos al carrito.  
+> La base de datos está diseñada para gestionar productos y su información asociada, permitiendo a la tienda administrar eficientemente su catálogo.
+
+---
+
+## 📊 **Estructura de la Base de Datos**
 
 La base de datos está compuesta por dos tablas principales:
 
-1. *tablaProducto*:
-   - Esta tabla almacena la información principal de cada producto disponible en la tienda, como su nombre, código, precio y cantidad en stock.
-   - Campos principales:
-     - id_producto (clave primaria)
-     - tipo
-     - categoria
-     - precio
+### **1. productos**:
 
-2. *tablaInformacion*:
-   - Esta tabla contiene información adicional o detallada sobre los productos, como la descripción del producto, la categoría y otros detalles relevantes.
-   - Campos principales:
-     - id_informacion (clave primaria)
-     - id_producto (clave foránea que referencia a la tabla tablaProducto)
-     - talle
-     - categoria
-     - stock
-     
+> ℹ️ **Descripción**:  
+> Esta tabla almacena la información principal de cada producto disponible en la tienda, como su nombre, código, precio y cantidad en stock.
 
-### Relación entre las Tablas:S
-- La relación entre *tabla_producto* y *tabla_informacion* es de *uno a uno, donde cada producto en la **tablaproducto* tiene una entrada correspondiente en la *tablainformacion* que contiene información más detallada.
-- La clave foránea id_producto en la *tablainformacion* establece esta relación y asegura la coherencia de los datos entre ambas tablas.
+> **Campos principales**:
+>
+> - `id_producto` (clave primaria)
+> - `tipo`
+> - `precio`
+> - `id_categoria` (clave foránea)
 
-## Objetivo
-El objetivo de este trabajo es demostrar el uso de bases de datos relacionales para gestionar información de productos en un contexto de tienda de ropa, asegurando que la estructura esté normalizada y facilite consultas eficientes.
+### **2. categorias**:
 
-![Texto alternativo](images/DER.png)
+> ℹ️ **Descripción**:  
+> Contiene información sobre las categorías, como el nombre de la categoría, el id de cada categoría, y una columna para imágenes.
+
+> **Campos principales**:
+>
+> - `id_categoria` (clave primaria)
+> - `nombre_categoria`
+> - `imagen_categoria`
+
+---
+
+## 🔗 **Relación entre las Tablas**
+
+> 🔄 **Uno a Muchos**:  
+> La relación entre la tabla `productos` y `categorias` es de uno a N (_uno a muchos_), donde cada producto en la tabla `productos` tiene una entrada correspondiente en `categorias` que contiene información más detallada.
+
+---
+
+## 🎯 **Objetivo**
+
+> 💡 **Descripción**:  
+> El objetivo de este trabajo es demostrar el uso de bases de datos relacionales para gestionar información de productos en el contexto de una tienda de ropa, asegurando que la estructura esté normalizada y facilite consultas eficientes.
+
+---
+
+![Diagrama de la relación entre tablas](images/relacion.png)
