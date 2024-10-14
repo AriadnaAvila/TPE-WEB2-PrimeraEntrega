@@ -56,4 +56,59 @@ La base de datos está compuesta por dos tablas principales:
 
 ---
 
+## 🚀 **Despliegue del Sitio en un Servidor con Apache y MySQL**
+
+### **Requisitos previos**
+
+- Servidor con Apache instalado (como XAMPP o LAMP).
+- MySQL instalado y corriendo.
+- PHP configurado correctamente en el servidor.
+
+### **Pasos para el despliegue:**
+
+1. **Clonar o descargar el proyecto en el servidor:**
+
+   - Copia todos los archivos del proyecto en el directorio `htdocs` de Apache, normalmente en `/opt/lampp/htdocs` en Linux (o el directorio equivalente en otras plataformas).
+
+2. **Configurar la base de datos:**
+
+   - Crea una base de datos MySQL para la tienda. Puedes usar phpMyAdmin o ejecutar el siguiente comando en la consola MySQL:
+     ```sql
+     CREATE DATABASE tienda_ropa;
+     ```
+   - Importa el archivo SQL incluido en el proyecto para generar las tablas `productos` y `categorias`:
+
+3. **Configurar el archivo `config.php`:**
+
+   - Asegúrate de configurar las credenciales correctas en el archivo `config.php` para que el sitio se conecte a la base de datos. A continuación, un ejemplo de configuración:
+     ```php
+     <?php
+     define('DB_SERVER', 'localhost');
+     define('DB_USERNAME', 'root');
+     define('DB_PASSWORD', '');
+     define('DB_NAME', 'db_tienda_ropa');
+     ?>
+     ```
+
+4. **Configurar Apache para el despliegue del sitio:**
+
+   - Si usas XAMPP, asegúrate de iniciar Apache y MySQL desde el panel de control.
+   - Si estás en un servidor Linux, asegúrate de que Apache esté corriendo:
+     ```bash
+     sudo systemctl start apache2
+     sudo systemctl start mysql
+     ```
+
+5. **Acceder al sitio:**
+   - Abre tu navegador y accede a `http://localhost/TPE-WEB2-PrimeraEntrega/home`.
+
+---
+
+## 🔑 **Usuarios y Contraseñas de Administrador**
+
+### Usuario Administrador:
+
+- **Usuario**: `webadmin`
+- **Contraseña**: `admin`
+
 ![Diagrama de la relación entre tablas](imagenes/relacion.png)
