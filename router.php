@@ -12,11 +12,7 @@ define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'
 $action = 'home';
 
 if (!empty($_GET['action'])) {
-    $action = $_GET['action'];public function showProducts()
-    {
-        $products = $this->model->getProducts();
-        $this->view->showProducts($products);
-    }
+    $action = $_GET['action'];
 }
 
 $params = explode('/', $action);
