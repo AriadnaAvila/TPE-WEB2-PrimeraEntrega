@@ -2,7 +2,7 @@
 
 class productsView{
 
-    public function showProducts($products){
+    public function showProducts($products, $order){
         require './templates/products.phtml';
     }
 

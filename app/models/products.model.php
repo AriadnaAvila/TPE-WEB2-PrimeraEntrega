@@ -8,8 +8,8 @@ class productsModel{
         $this->db = new PDO("mysql:host=" . MYSQL_HOST . ";dbname=" . MYSQL_DB . ";charset=utf8", MYSQL_USER, MYSQL_PASS);
     }
 
-    function getProducts(){
-        $query = $this->db->prepare('SELECT * FROM productos');
+    function getProducts($order = 'asc'){
+        $query = $this->db->prepare("SELECT * FROM productos ORDER BY precio " . ($order === 'desc' ? 'DESC' : 'ASC'));
         $query->execute();
 
         $products = $query->fetchAll(PDO::FETCH_OBJ);

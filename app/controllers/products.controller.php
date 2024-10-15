@@ -21,9 +21,9 @@
             $this->view->showSelect($categorias);
         }
 
-        public function showProducts(){
-            $products = $this->model->getProducts();
-            $this->view->showProducts($products);
+        public function showProducts($order = 'asc'){
+            $products = $this->model->getProducts($order);
+            $this->view->showProducts($products, $order);
         }
 
         public function showProductByID($id_producto){

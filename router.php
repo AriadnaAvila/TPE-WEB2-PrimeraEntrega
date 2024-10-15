@@ -49,8 +49,9 @@ switch ($params[0]) {
         break;
     case 'products':
         $productsController = new productsController();
-        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-        $productsController->showProducts($page);
+        // Manejar el parámetro 'order' para la ordenación de productos
+        $order = isset($_GET['order']) && ($_GET['order'] == 'desc') ? 'desc' : 'asc';
+        $productsController->showProducts($order);
         break;        
     case 'info':
         $productsController = new productsController();
