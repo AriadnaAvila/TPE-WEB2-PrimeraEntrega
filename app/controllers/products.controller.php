@@ -17,6 +17,7 @@
 
         public function showAddProductForm(){
             $categorias = $this->cmodel->getCategories();
+            var_dump($categorias);
             $this->view->showSelect($categorias);
         }
 
@@ -45,9 +46,10 @@
         function addProduct(){
             $tipo = $_POST['tipo'];
             $precio = $_POST['precio'];
+            $imagen_producto = $_POST['imagen_producto'];
             $id_categoria = $_POST['id_categoria'];
 
-            $this->model->insertProduct($tipo, $precio, $id_categoria);
+            $this->model->insertProduct($tipo, $precio, $imagen_producto, $id_categoria);
             header("Location: " . BASE_URL . "products");
         }
 

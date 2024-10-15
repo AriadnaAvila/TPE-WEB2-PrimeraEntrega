@@ -47,9 +47,9 @@ class productsModel{
         return $information;  // Retorna un solo producto con su categoría
     }
 
-    function insertProduct($tipo, $precio, $id_categoria){
-        $query = $this->db->prepare('INSERT INTO productos (tipo, precio, id_categoria) VALUES (?, ?, ?)');
-        $query->execute([$tipo, $precio, $id_categoria]);
+    function insertProduct($tipo, $precio, $imagen_producto, $id_categoria){
+        $query = $this->db->prepare('INSERT INTO productos (tipo, precio, imagen_producto, id_categoria) VALUES (?, ?, ?, ?)');
+        $query->execute([$tipo, $precio, $imagen_producto, $id_categoria]);
 
         return $this->db->lastInsertId();
     }

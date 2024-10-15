@@ -110,6 +110,9 @@ switch ($params[0]) {
                 case 'editCategory':
                     $categoriesController->editCategory($id_categoria);
                     break;
+                case 'updateCategory':
+                    $categoriesController->updateCategory($id_categoria);
+                    break;
                 case 'editProduct':
                     $id_producto = isset($params[1]) ? $params[1] : null;
                     $productsController = new productsController();
@@ -119,9 +122,6 @@ switch ($params[0]) {
                     $id_producto = isset($params[1]) ? $params[1] : null;
                     $productsController = new productsController();
                     $productsController->updateProduct($id_producto);
-                    break;
-                case 'updateCategory':
-                    $categoriesController->updateCategory($id_categoria);
                     break;
             }
         } else {

@@ -34,8 +34,9 @@ class categoriesController{
 
     function addCategorie(){
         $nombre_categoria = $_POST['nombre_categoria'];
+        $imagen_categoria = $_POST['imagen_categoria'];
 
-        $this->categoriesModel->insertCategorie($nombre_categoria);
+        $this->categoriesModel->insertCategorie($nombre_categoria, $imagen_categoria);
         header("Location: " . BASE_URL . "categories");
         exit();
     }

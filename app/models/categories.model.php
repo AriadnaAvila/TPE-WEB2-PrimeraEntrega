@@ -62,9 +62,9 @@ class categoriesModel{
         return $categorieById;
     }
 
-    function insertCategorie($nombre_categoria){
-        $query = $this->db->prepare('INSERT INTO categorias (nombre_categoria) VALUES (?)');
-        $query->execute([$nombre_categoria]);
+    function insertCategorie($nombre_categoria, $imagen_categoria){
+        $query = $this->db->prepare('INSERT INTO categorias (nombre_categoria, imagen_categoria) VALUES (?,?)');
+        $query->execute([$nombre_categoria, $imagen_categoria]);
 
         return $this->db->lastInsertId();
     }
