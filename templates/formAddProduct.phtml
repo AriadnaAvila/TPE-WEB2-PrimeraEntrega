@@ -1,8 +1,9 @@
-<?php if (isset($_SESSION['user'])): ?>
+<?php  
+        if (isset($_SESSION['user'])): ?>
     <div class="bg-gray-100 min-h-[75vh] py-12 mb-16">
         <div class="container mx-auto px-4 max-w-md">
             <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Agregar Nuevo Producto</h2>
-
+            
             <form action="addProduct" method="POST" class="bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="p-6 space-y-6">
                     <div>
@@ -16,7 +17,7 @@
                         <label for="precio" class="block text-sm font-medium text-gray-700 mb-1">PRECIO</label>
                         <input type="text" id="precio" name="precio" required
                             class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-                                      focus:outline-none focus:border-black focus:ring-1 focus:ring-black">
+                                      focus:outline-none focus:border-black focus:ring-1 focus:ring-black">  
                     </div>
 
                     <div>
@@ -30,17 +31,13 @@
                         <label for="categoria" class="block text-sm font-medium text-gray-700 mb-1">CATEGORÍA</label>
                         <select id="categoria" name="id_categoria"
                             class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm
-                                       focus:outline-none focus:border-black focus:ring-1 focus:ring-black">
-                            <?php if (!empty($categorias)): ?>
-                                <?php foreach ($categorias as $categoria): ?>
-                                    <option value="<?= htmlspecialchars($categoria->id_categoria) ?>">
-                                        <?= $product->id_categoria == $categoria->id_categoria ? 'selected' : '' ?>
-                                        <?= htmlspecialchars($categoria->nombre_categoria) ?>
+                                focus:outline-none focus:border-black focus:ring-1 focus:ring-black">
+                                <?php  
+                                foreach ($categories as $categorie): ?>
+                                    <option value="<?php echo($categorie->id_categoria) ?>">
+                                        <?php echo($categorie->nombre_categoria) ?>
                                     </option>
                                 <?php endforeach; ?>
-                            <?php else: ?>
-                                <option value="">No hay categorías disponibles</option>
-                            <?php endif; ?>
                         </select>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div class="md:flex">
                     <div class="md:flex-shrink-0">
-                        <img class="h-96 w-full object-cover md:w-96" src="https://via.placeholder.com/400x400" alt="Imagen del producto">
+                    <img src="<?= htmlspecialchars($product->imagen_producto) ?>" alt="Imagen del producto" class="w-full h-64 object-cover">
                     </div>
                     <div class="p-8">
                         <div class="uppercase tracking-wide text-sm text-black font-semibold"><?= htmlspecialchars($information->nombre_categoria) ?></div>

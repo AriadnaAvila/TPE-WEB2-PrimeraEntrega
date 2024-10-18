@@ -16,14 +16,14 @@
         }
 
         public function showAddProductForm(){
-            $categorias = $this->cmodel->getCategories();
-            var_dump($categorias);
-            $this->view->showSelect($categorias);
+            $categories = $this->cmodel->getCategories();
+            $this->view->showSelect($categories);
         }
 
         public function showProducts($order = 'asc'){
+            $categories = $this->cmodel->getCategories();
             $products = $this->model->getProducts($order);
-            $this->view->showProducts($products, $order);
+            $this->view->showProducts($products, $order,$categories);
         }
 
         public function showProductByID($id_producto){
@@ -40,7 +40,8 @@
             if (!$information) {
                 header('Location: ' . BASE_URL . 'products');
             }
-            $this->view->showInformationById($information);
+            $product= $this->model->getProductById($id_producto);
+            $this->view->showInformationById($information,$product);
         }
 
         function addProduct(){
@@ -63,16 +64,15 @@
 
             if (!$product) {
                 header("Location: " . BASE_URL . "puducts");
-                var_dump($product);
                 exit();
             }
 
             // Obtener las categorías para mostrar en el formulario
             $categories = $this->cmodel->getCategories();
+           
 
             // Obtener la información adicional del producto (talle, color, stock)
             $info = $this->model->getProductDetailsById($id_producto);
-
             // Mostrar el formulario de edición con el producto, sus categorías e información adicional
             $this->view->showEditProductForm($product, $categories, $info);
         }

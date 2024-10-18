@@ -25,11 +25,12 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        
     </style>
 </head>
 
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-    <header class="bg-white dark:bg-gray-800 shadow-sm">
+    <header class="bg-white dark:bg-gray-800 shadow-sm fixed top-0 left-0 right-0 z-10">
         <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-10">
                 <a href="home" class="flex items-center">
@@ -46,7 +47,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
-                <?php if (isset($_SESSION['user'])): ?>
+                <?php 
+               
+                if (isset($_SESSION['user'])): ?>
                     <span class="text-sm text-gray-600 dark:text-gray-400">Hola, <?= htmlspecialchars($_SESSION['user']) ?></span>
                     <a href="logout" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors">Salir</a>
                 <?php else: ?>
@@ -56,7 +59,7 @@
         </nav>
     </header>
 
-    <main id="main-content" class="container mx-auto px-4">
+    <main id="main-content" class="container mx-auto px-4 mt-20">
         <!-- Aquí va el contenido de las categorías, productos, etc. -->
     </main>
 

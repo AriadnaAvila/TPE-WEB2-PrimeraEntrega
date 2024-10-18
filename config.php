@@ -4,3 +4,4 @@
  const MYSQL_DB = 'db_tienda_ropa';
  const MYSQL_HOST = 'localhost';
 ?>
+

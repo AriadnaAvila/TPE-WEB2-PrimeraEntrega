@@ -2,7 +2,7 @@
 
 class productsView{
 
-    public function showProducts($products, $order){
+    public function showProducts($products, $order,$categories){
         require './templates/products.phtml';
     }
 
@@ -10,11 +10,11 @@ class productsView{
         require './templates/productbyid.phtml';
     }
 
-    function showInformationById($information){
+    function showInformationById($information, $product){
         require './templates/infobyid.phtml';
     }
 
-    function showSelect($categorias){
+    function showSelect($categories){
         require './templates/formAddProduct.phtml';
     }
 

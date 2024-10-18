@@ -37,6 +37,7 @@ if (!in_array($params[0], $publicRoutes) && !isset($_SESSION['user'])) {
 switch ($params[0]) {
     case 'home':
         $homeController = new homeController();
+      
         $homeController->showHome();
         break;
     case 'login':
