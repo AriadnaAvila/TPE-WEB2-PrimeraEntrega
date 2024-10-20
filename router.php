@@ -6,82 +6,76 @@ require_once 'app/controllers/categories.controller.php';
 require_once 'app/controllers/auth.controller.php';
 require_once 'app/controllers/home.controller.php';
 
-// Definimos la URL base
+// Definir URL base
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
 // Acción por defecto es 'home'
-$action = 'home';
-
-if (!empty($_GET['action'])) {
-    $action = $_GET['action'];
-}
-
+$action = $_GET['action'] ?? 'home';
 $params = explode('/', $action);
 
-// Proteger rutas que requieren autenticación
-$publicRoutes = ['home', 'login', 'logout', 'categories', 'categorie', 'products', 'product', 'info'];  // Rutas públicas
+// Rutas públicas
+$publicRoutes = ['home', 'login', 'logout', 'categories', 'categorie', 'products', 'product', 'info'];  
 
-// Si el usuario intenta acceder a login y ya está logueado, redirigir al home
+// Si el usuario ya está logueado, redirigir al home al intentar acceder al login
 if ($params[0] === 'login' && isset($_SESSION['user'])) {
     header('Location: ' . BASE_URL . 'home');
     exit();
 }
 
+// Redirigir al home si intenta acceder a una ruta protegida sin estar autenticado
 if (!in_array($params[0], $publicRoutes) && !isset($_SESSION['user'])) {
-    header('Location: ' . BASE_URL . 'home');  // Redirigir al login si no está autenticado
+    header('Location: ' . BASE_URL . 'home');
     exit();
 }
 
+// Instanciar controladores solo una vez
+$homeController = new homeController();
+$authController = new AuthController();
+$productsController = new productsController();
+$categoriesController = new categoriesController();
 
-// Rutas
+// Rutas principales
 switch ($params[0]) {
     case 'home':
-        $homeController = new homeController();
-      
         $homeController->showHome();
         break;
+
     case 'login':
-        $authController = new AuthController();
         $authController->login();
         break;
-    case 'logout':  // Ruta para cerrar sesión
-        $authController = new AuthController();
+
+    case 'logout':  
         $authController->logout();
         break;
+
     case 'products':
-        $productsController = new productsController();
-        // Manejar el parámetro 'order' para la ordenación de productos
-        $order = isset($_GET['order']) && ($_GET['order'] == 'desc') ? 'desc' : 'asc';
-        $productsController->showProducts($order);
-        break;        
-    case 'info':
-        $productsController = new productsController();
-        $id_producto = $params[1];
-        $productsController->showInformationByID($id_producto);
+        $order = $_GET['order'] ?? 'asc';  // Orden por defecto 'asc'
+        $productsController->showProducts($order === 'desc' ? 'desc' : 'asc');
         break;
-    case 'product':  // Cambio aquí
+
+    case 'product':
+    case 'info':
         if (isset($params[1])) {
-            $productsController = new productsController();
-            $productsController->showProductByID($params[1]);
+            $method = $params[0] === 'product' ? 'showProductByID' : 'showInformationByID';
+            $productsController->$method($params[1]);
         } else {
-            // Manejo de error si no hay ID
             echo '404 Product Not Found';
         }
         break;
+
     case 'categories':
-        $categoriesController = new categoriesController();
         $categoriesController->showCategories();
         break;
-    case 'categorie':  // Cambio aquí
+
+    case 'categorie':
         if (isset($params[1])) {
-            $categoriesController = new categoriesController();
             $categoriesController->showCategorieById($params[1]);
         } else {
-            // Manejo de error si no hay ID
             echo '404 Category Not Found';
         }
         break;
-        // Rutas protegidas (requieren autenticación)
+
+    // Rutas protegidas (requieren autenticación)
     case 'addCategorie':
     case 'addProduct':
     case 'deleteCategorie':
@@ -90,47 +84,22 @@ switch ($params[0]) {
     case 'editProduct':
     case 'updateCategory':
     case 'updateProduct':
-        if (isset($_SESSION['user'])) {
-            $categoriesController = new categoriesController();
-            $id_categoria = isset($params[1]) ? $params[1] : null;
-            switch ($params[0]) {
-                case 'addCategorie':
-                    $categoriesController->addCategorie();
-                    break;
-                case 'addProduct':
-                    $productsController = new productsController();
-                    $productsController->addProduct();
-                    break;
-                case 'deleteCategorie':
-                    $categoriesController->deleteCategory($id_categoria);
-                    break;
-                case 'deleteProduct':
-                    $id_producto = isset($params[1]) ? $params[1] : null;
-                    $productsController = new productsController();
-                    $productsController->deleteProductById($id_producto);
-                    break;
-                case 'editCategory':
-                    $categoriesController->editCategory($id_categoria);
-                    break;
-                case 'updateCategory':
-                    $categoriesController->updateCategory($id_categoria);
-                    break;
-                case 'editProduct':
-                    $id_producto = isset($params[1]) ? $params[1] : null;
-                    $productsController = new productsController();
-                    $productsController->editProductById($id_producto);
-                    break;
-                case 'updateProduct':
-                    $id_producto = isset($params[1]) ? $params[1] : null;
-                    $productsController = new productsController();
-                    $productsController->updateProduct($id_producto);
-                    break;
-            }
-        } else {
+        if (!isset($_SESSION['user'])) {
             header("Location: " . BASE_URL . "login");
             exit();
         }
+
+        $id = $params[1] ?? null;
+        $controller = in_array($params[0], ['addProduct', 'deleteProduct', 'editProduct', 'updateProduct']) ? $productsController : $categoriesController;
+        $method = str_replace(['Categorie', 'Product'], ['Category', 'Product'], $params[0]);
+
+        if (method_exists($controller, $method)) {
+            $controller->$method($id);
+        } else {
+            echo '404 Action Not Found';
+        }
         break;
+
     default:
         echo '404 page not found';
         break;
